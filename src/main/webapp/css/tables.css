@@ -1,1 +1,143 @@
 @charset "UTF-8";
+/* =============================================================
+   CycleSync — tables.css
+   Data table styling with hover, striping, responsive wrapper
+   ============================================================= */
+
+/* ─── Table Container ────────────────────────────────────────── */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--clr-border-light);
+    box-shadow: var(--shadow-sm);
+    background: var(--clr-surface);
+}
+
+/* ─── Table ──────────────────────────────────────────────────── */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+}
+
+/* ─── Head ───────────────────────────────────────────────────── */
+.data-table thead {
+    background: var(--clr-surface-2);
+    border-bottom: 2px solid var(--clr-border);
+}
+
+.data-table thead th {
+    padding: 13px 18px;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    color: var(--clr-text-secondary);
+    white-space: nowrap;
+}
+
+.data-table thead th:first-child { padding-left: 22px; border-radius: var(--radius-lg) 0 0 0; }
+.data-table thead th:last-child  { padding-right: 22px; border-radius: 0 var(--radius-lg) 0 0; }
+
+/* ─── Body ───────────────────────────────────────────────────── */
+.data-table tbody tr {
+    border-bottom: 1px solid var(--clr-border-light);
+    transition: background .12s ease;
+}
+
+.data-table tbody tr:last-child { border-bottom: none; }
+
+.data-table tbody tr:hover {
+    background: var(--clr-primary-pale);
+}
+
+.data-table tbody td {
+    padding: 14px 18px;
+    color: var(--clr-text);
+    vertical-align: middle;
+}
+
+.data-table tbody td:first-child { padding-left: 22px; }
+.data-table tbody td:last-child  { padding-right: 22px; }
+
+/* ─── Cell Helpers ───────────────────────────────────────────── */
+.td-id {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: .75rem;
+    color: var(--clr-text-muted);
+}
+
+.td-name {
+    font-weight: 700;
+    color: var(--clr-text);
+}
+
+.td-meta {
+    font-size: .8rem;
+    color: var(--clr-text-secondary);
+    margin-top: 2px;
+}
+
+.td-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.td-nowrap { white-space: nowrap; }
+
+/* ─── Bike Type Tag ──────────────────────────────────────────── */
+.type-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+}
+
+.type-mountain { background: #e8f4fd; color: #1565c0; }
+.type-road     { background: #fff3e0; color: #e65100; }
+.type-electric { background: #f3e5f5; color: #7b1fa2; }
+.type-hybrid   { background: #e8f5e9; color: #2e7d32; }
+
+/* ─── Table Toolbar ──────────────────────────────────────────── */
+.table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.table-toolbar-left,
+.table-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.table-count {
+    font-size: .82rem;
+    color: var(--clr-text-muted);
+    font-weight: 600;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .data-table thead th,
+    .data-table tbody td { padding: 12px 12px; }
+    .data-table thead th:first-child,
+    .data-table tbody td:first-child { padding-left: 14px; }
+    .data-table thead th:last-child,
+    .data-table tbody td:last-child  { padding-right: 14px; }
+    .td-actions { gap: 4px; }
+}

@@ -1,1 +1,248 @@
 @charset "UTF-8";
+/* =============================================================
+   CycleSync — forms.css
+   Form inputs, selects, labels, validation states
+   ============================================================= */
+
+/* ─── Form Group ─────────────────────────────────────────────── */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.form-group:last-of-type { margin-bottom: 0; }
+
+/* ─── Label ──────────────────────────────────────────────────── */
+.form-label {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--clr-text-secondary);
+    letter-spacing: .2px;
+    text-transform: uppercase;
+}
+
+.form-label .required {
+    color: var(--clr-danger);
+    margin-left: 3px;
+}
+
+/* ─── Input Wrapper (for icon support) ──────────────────────── */
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--clr-text-muted);
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.input-icon-right {
+    position: absolute;
+    right: 14px;
+    color: var(--clr-text-muted);
+    font-size: .9rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* ─── Input / Select / Textarea ──────────────────────────────── */
+.form-control {
+    width: 100%;
+    padding: 11px 14px;
+    font-family: var(--font-body);
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--clr-text);
+    background: var(--clr-surface);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    transition: var(--trans-fast);
+    outline: none;
+    appearance: none;
+    line-height: 1.5;
+}
+
+.form-control::placeholder {
+    color: var(--clr-text-muted);
+    font-weight: 400;
+}
+
+.form-control:focus {
+    border-color: var(--clr-primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(27,94,55,.12);
+}
+
+.form-control:hover:not(:focus) {
+    border-color: var(--clr-primary-light);
+}
+
+/* With left icon */
+.input-wrap .input-icon + .form-control {
+    padding-left: 40px;
+}
+
+/* Select arrow */
+select.form-control {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a6651' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.6;
+}
+
+/* ─── Validation States ──────────────────────────────────────── */
+.form-control.is-invalid {
+    border-color: var(--clr-danger);
+    background: #fff8f8;
+}
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(192,57,43,.12);
+}
+
+.form-control.is-valid {
+    border-color: var(--clr-success);
+}
+
+.form-hint {
+    font-size: .78rem;
+    color: var(--clr-text-muted);
+    font-weight: 500;
+}
+
+.form-error {
+    font-size: .78rem;
+    color: var(--clr-danger);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ─── Checkbox & Radio ───────────────────────────────────────── */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: .875rem;
+    color: var(--clr-text-secondary);
+    font-weight: 500;
+}
+
+.form-check input[type="checkbox"],
+.form-check input[type="radio"] {
+    width: 17px; height: 17px;
+    accent-color: var(--clr-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* ─── Search Bar ─────────────────────────────────────────────── */
+.search-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.search-bar .form-control {
+    min-width: 220px;
+    flex: 1;
+}
+
+/* ─── Filter Row ─────────────────────────────────────────────── */
+.filter-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border-light);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-xs);
+}
+
+.filter-row label {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--clr-text-secondary);
+    white-space: nowrap;
+}
+
+.filter-row .form-control {
+    min-width: 160px;
+}
+
+/* ─── Modal / Inline Form Panel ─────────────────────────────── */
+.form-panel {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 28px;
+    margin-bottom: 24px;
+    animation: slideDown .25s ease;
+}
+
+.form-panel-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--clr-border-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid var(--clr-border-light);
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+/* ─── Inline Form Grid ───────────────────────────────────────── */
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.form-col-span-2 { grid-column: span 2; }
+.form-col-span-3 { grid-column: span 3; }
+
+@media (max-width: 700px) {
+    .form-grid-2,
+    .form-grid-3 { grid-template-columns: 1fr; }
+    .form-col-span-2,
+    .form-col-span-3 { grid-column: span 1; }
+}
