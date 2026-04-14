@@ -51,6 +51,10 @@ public class BorrowRecordDao {
     private static final String SQL_COUNT_ACTIVE =
         "SELECT COUNT(*) FROM borrow_records WHERE recordStatus = 'ACTIVE'";
 
+    private static final String SQL_FLAG_OVERDUE =
+        "UPDATE borrow_records SET recordStatus = 'OVERDUE' " +
+        "WHERE recordStatus = 'ACTIVE' AND dueDate < ?";
+
     // ----------------------------------------------------------------
     // Mapper (enriched)
     // ----------------------------------------------------------------
@@ -199,6 +203,15 @@ public class BorrowRecordDao {
             ps.setString(1, recordStatus);
             ps.setInt(2, recordId);
             return ps.executeUpdate() > 0;
+        }
+    }
+
+    public int flagOverdueRecords(Timestamp now) throws SQLException {
+        try (Connection conn = DBConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(SQL_FLAG_OVERDUE)) {
+             
+            ps.setTimestamp(1, now);
+            return ps.executeUpdate();
         }
     }
 }

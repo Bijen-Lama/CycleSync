@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/manageBicycles")
-public class ManageBicycleServlet extends HttpServlet {
+public class ManageBicycleServlet extends BaseServlet {
 
     private final BicycleService bicycleService = new BicycleService();
 
@@ -89,16 +89,5 @@ public class ManageBicycleServlet extends HttpServlet {
         response.sendRedirect(response.encodeRedirectURL("manageBicycles"));
     }
 
-    private boolean isAdmin(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loggedInUser") == null) {
-            response.sendRedirect(response.encodeRedirectURL("login")); return false;
-        }
-        UserModel user = (UserModel) session.getAttribute("loggedInUser");
-        if (!user.isAdmin()) {
-            response.sendRedirect(response.encodeRedirectURL("memberDashboard")); return false;
-        }
-        return true;
-    }
+
 }

@@ -97,4 +97,48 @@ public class UserService {
         }
         return userDao.updateProfile(userId, fullName.trim(), phoneNumber, userAddress);
     }
+    
+    public UserModel loginUser1(String userEmail, String userPassword) throws SQLException {
+
+        System.out.println("===========================================");
+        System.out.println("[LOGIN] Email received    : '" + userEmail + "'");
+        System.out.println("[LOGIN] Password received : '" + userPassword + "'");
+        System.out.println("[LOGIN] Password length   : " + userPassword.length());
+
+        UserModel user = userDao.findByEmail(userEmail);
+
+        System.out.println("[LOGIN] DB lookup result  : " + (user == null ? "NULL - not found" : "FOUND userId=" + user.getUserId()));
+
+        if (user == null) {
+            System.out.println("[LOGIN] FAIL — no account with that email");
+            return null;
+        }
+
+        System.out.println("[LOGIN] accountStatus     : " + user.getAccountStatus());
+        System.out.println("[LOGIN] userRole          : " + user.getUserRole());
+        System.out.println("[LOGIN] hash in DB        : " + user.getUserPassword());
+
+        if (!user.isActive()) {
+            System.out.println("[LOGIN] FAIL — account is SUSPENDED");
+            return null;
+        }
+
+        boolean match = false;
+        try {
+            match = BCrypt.checkpw(userPassword, user.getUserPassword());
+            System.out.println("[LOGIN] BCrypt.checkpw   : " + match);
+        } catch (Exception e) {
+            System.out.println("[LOGIN] BCrypt EXCEPTION : " + e.getClass().getName() + " - " + e.getMessage());
+            System.out.println("[LOGIN] Is jbcrypt JAR missing from WEB-INF/lib?");
+        }
+
+        if (match) {
+            System.out.println("[LOGIN] SUCCESS — returning user");
+            return user;
+        }
+
+        System.out.println("[LOGIN] FAIL — password did not match hash");
+        System.out.println("===========================================");
+        return null;
+    }
 }

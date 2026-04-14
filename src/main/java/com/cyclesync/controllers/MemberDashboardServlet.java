@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/memberDashboard")
-public class MemberDashboardServlet extends HttpServlet {
+public class MemberDashboardServlet extends BaseServlet {
 
     private final BorrowService borrowService = new BorrowService();
     private final FineService   fineService   = new FineService();
@@ -20,7 +20,7 @@ public class MemberDashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        UserModel user = getLoggedInMember(request, response);
+        UserModel user = getLoggedInUser(request, response);
         if (user == null) return;
 
         try {
@@ -39,12 +39,5 @@ public class MemberDashboardServlet extends HttpServlet {
         }
     }
 
-    private UserModel getLoggedInMember(HttpServletRequest request,
-                                        HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loggedInUser") == null) {
-            response.sendRedirect(response.encodeRedirectURL("login")); return null;
-        }
-        return (UserModel) session.getAttribute("loggedInUser");
-    }
+
 }

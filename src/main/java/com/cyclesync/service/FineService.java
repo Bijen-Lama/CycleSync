@@ -31,25 +31,27 @@ public class FineService {
      * @return the new fineId, or -1 if skipped
      */
     public int issueLateReturnFine(BorrowRecordModel record) throws SQLException {
-        if (fineDao.existsForRecord(record.getRecordId())) return -1;
+        if (fineDao.existsForRecord(record.getRecordId()))
+            return -1;
 
-        if (record.getReturnDate() == null || record.getDueDate() == null) return -1;
+        if (record.getReturnDate() == null || record.getDueDate() == null)
+            return -1;
 
         long overdueMillis = record.getReturnDate().getTime() - record.getDueDate().getTime();
-        if (overdueMillis <= 0) return -1;  // Returned on time — no fine
+        if (overdueMillis <= 0)
+            return -1; // Returned on time — no fine
 
         BigDecimal hoursLate = BigDecimal.valueOf(overdueMillis)
-            .divide(BigDecimal.valueOf(3_600_000), 2, RoundingMode.CEILING);
+                .divide(BigDecimal.valueOf(3_600_000), 2, RoundingMode.CEILING);
 
         BigDecimal fineAmount = LATE_FEE_PER_HOUR
-            .multiply(hoursLate)
-            .setScale(2, RoundingMode.HALF_UP);
+                .multiply(hoursLate)
+                .setScale(2, RoundingMode.HALF_UP);
 
         String adminNotes = "Auto-issued: " + hoursLate + " hours overdue.";
         FineModel fine = new FineModel(
-            record.getRecordId(), record.getUserId(),
-            "LATE_RETURN", fineAmount, adminNotes
-        );
+                record.getRecordId(), record.getUserId(),
+                "LATE_RETURN", fineAmount, adminNotes);
         return fineDao.insertFine(fine);
     }
 
@@ -57,8 +59,8 @@ public class FineService {
      * Admin manually issues a DAMAGE or LOSS fine.
      */
     public int issueDamageFine(int recordId, int userId,
-                                String fineReason, BigDecimal fineAmount,
-                                String adminNotes) throws SQLException {
+            String fineReason, BigDecimal fineAmount,
+            String adminNotes) throws SQLException {
         if (fineAmount.compareTo(BigDecimal.ZERO) <= 0)
             throw new IllegalArgumentException("Fine amount must be greater than zero.");
 

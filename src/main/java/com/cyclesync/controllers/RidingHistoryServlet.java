@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/ridingHistory")
-public class RidingHistoryServlet extends HttpServlet {
+public class RidingHistoryServlet extends BaseServlet {
 
     private final BorrowService borrowService = new BorrowService();
 
@@ -31,12 +31,5 @@ public class RidingHistoryServlet extends HttpServlet {
         }
     }
 
-    private UserModel getLoggedInUser(HttpServletRequest request,
-                                      HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loggedInUser") == null) {
-            response.sendRedirect(response.encodeRedirectURL("login")); return null;
-        }
-        return (UserModel) session.getAttribute("loggedInUser");
-    }
+
 }

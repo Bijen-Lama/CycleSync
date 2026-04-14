@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/fines")
-public class FineServlet extends HttpServlet {
+public class FineServlet extends BaseServlet {
 
     private final FineService fineService = new FineService();
 
@@ -73,12 +73,5 @@ public class FineServlet extends HttpServlet {
         response.sendRedirect(response.encodeRedirectURL("fines"));
     }
 
-    private UserModel getLoggedInUser(HttpServletRequest request,
-                                      HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loggedInUser") == null) {
-            response.sendRedirect(response.encodeRedirectURL("login")); return null;
-        }
-        return (UserModel) session.getAttribute("loggedInUser");
-    }
+
 }

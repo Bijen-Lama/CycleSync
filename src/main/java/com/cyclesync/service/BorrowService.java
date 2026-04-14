@@ -135,12 +135,7 @@ public class BorrowService {
      * Call this from AdminDashboardServlet on load, or via a scheduler.
      */
     public void flagOverdueRecords() throws SQLException {
-        List<BorrowRecordModel> activeRecords = borrowRecordDao.findAll();
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        for (BorrowRecordModel record : activeRecords) {
-            if (record.isActive() && record.getDueDate().before(now)) {
-                borrowRecordDao.updateStatus(record.getRecordId(), "OVERDUE");
-            }
-        }
+        borrowRecordDao.flagOverdueRecords(now);
     }
 }

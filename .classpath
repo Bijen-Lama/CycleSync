@@ -13,45 +13,13 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/jbcrypt-0.4.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.activation-2.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.el-api-4.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.servlet.jsp.jstl-2.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.servlet.jsp.jstl-api-2.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.servlet-api-5.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.xml.bind-api-3.0.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="D:/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/jbcrypt-0.4.jar"/>
+	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.activation-2.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.el-api-4.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.servlet.jsp.jstl-2.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.servlet-api-5.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Jar FIles/jakarta.xml.bind-api-3.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

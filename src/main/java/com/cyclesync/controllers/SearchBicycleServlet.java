@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/searchBicycles")
-public class SearchBicycleServlet extends HttpServlet {
+public class SearchBicycleServlet extends BaseServlet {
 
     private final BicycleService bicycleService = new BicycleService();
 
@@ -33,12 +33,5 @@ public class SearchBicycleServlet extends HttpServlet {
         }
     }
 
-    private UserModel getLoggedInUser(HttpServletRequest request,
-                                      HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loggedInUser") == null) {
-            response.sendRedirect(response.encodeRedirectURL("login")); return null;
-        }
-        return (UserModel) session.getAttribute("loggedInUser");
-    }
+
 }

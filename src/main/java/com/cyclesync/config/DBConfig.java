@@ -11,18 +11,12 @@ public class DBConfig {
 	private static final String PASSWORD = "";
 	private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 	
-	private static Connection connection = null;
-	
 	private DBConfig() {}
 	
 	public static Connection getConnection() throws SQLException {
 		try {
-			if (connection == null || connection.isClosed()) {
-				Class.forName(DB_DRIVER);
-				connection = DriverManager.getConnection(URL, USER, PASSWORD);
-				System.out.println("[DBConfig] Connected to cyclesync_db via XAMPP MySQL.");
-				
-			}
+			Class.forName(DB_DRIVER);
+			return DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (ClassNotFoundException e) {
 			System.err.println("[DBConfig] MySQL Connector/J JAR not found. ");
 			throw new SQLException("MySQL JDBC driver is missing.");
@@ -31,18 +25,9 @@ public class DBConfig {
 			System.err.println("Error: " + e.getMessage());
 			throw e;
 		}
-		return connection;
 	}
 	
 	public static void closeConnection() {
-		if (connection != null) {
-			try {
-				connection.close();
-				connection = null;
-				System.out.println("[DBCOnfig] XAMPP MySQL connection is closed successfully.");
-			} catch (SQLException e) {
-				System.err.println("[DbConfig] Error while closing connection: " + e.getMessage());
-			}
-		}
+		// No longer needed, Connections are automatically closed by DAOs' try-with-resources.
 	}
 }
