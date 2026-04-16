@@ -38,7 +38,7 @@ public class ReturnServlet extends BaseServlet {
                     "Bike returned. A late return fine has been issued. Check 'My Fines'.");
             } else {
                 request.getSession().setAttribute("successMessage",
-                    "Bike returned successfully! Total cost: $" + completedRecord.getTotalCost());
+                    "Bike returned successfully! Total cost: NPR " + completedRecord.getTotalCost());
             }
             response.sendRedirect(response.encodeRedirectURL("memberDashboard"));
 

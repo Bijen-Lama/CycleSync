@@ -22,7 +22,7 @@ public class ManageMemberServlet extends BaseServlet {
 
         try {
             request.setAttribute("memberList", userService.getAllMembers());
-            request.getRequestDispatcher("/WEB-INF/pages/manageMembers.jsp")
+            request.getRequestDispatcher("/WEB-INF/pages/ManageMembers.jsp")
                    .forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Error loading member list.", e);

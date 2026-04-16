@@ -18,7 +18,7 @@ public class FineService {
     private final FineDao fineDao = new FineDao();
 
     // Fine rate per hour overdue (adjust as needed)
-    private static final BigDecimal LATE_FEE_PER_HOUR = new BigDecimal("2.50");
+    private static final BigDecimal LATE_FEE_PER_HOUR = new BigDecimal("350.00");
 
     // ----------------------------------------------------------------
     // Issue Fines

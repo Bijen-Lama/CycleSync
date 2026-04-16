@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
@@ -117,7 +117,7 @@
                                             <c:choose>
                                                 <c:when test="${not empty record.totalCost}">
                                                     <strong style="color:var(--clr-primary);">
-                                                        $<fmt:formatNumber value="${record.totalCost}" pattern="#,##0.00"/>
+                                                        NPR <fmt:formatNumber value="${record.totalCost}" pattern="#,##0.00"/>
                                                     </strong>
                                                 </c:when>
                                                 <c:otherwise><span style="color:var(--clr-text-muted);">—</span></c:otherwise>

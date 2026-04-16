@@ -193,7 +193,7 @@
                                             <td>
                                                 <c:choose>
                                                     <c:when test="${not empty record.totalCost}">
-                                                        <strong>$<fmt:formatNumber value="${record.totalCost}" pattern="#,##0.00"/></strong>
+                                                        <strong>NPR <fmt:formatNumber value="${record.totalCost}" pattern="#,##0.00"/></strong>
                                                     </c:when>
                                                     <c:otherwise><span style="color:var(--clr-text-muted);">—</span></c:otherwise>
                                                 </c:choose>

@@ -61,14 +61,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="hourlyRate">Hourly Rate ($) <span class="required">*</span></label>
+                            <label class="form-label" for="hourlyRate">Hourly Rate (NPR ) <span class="required">*</span></label>
                             <input type="number" id="hourlyRate" name="hourlyRate"
-                                   class="form-control" placeholder="e.g. 3.50" step="0.01" min="0" required>
+                                   class="form-control" placeholder="e.g. 150.00" step="0.01" min="0" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="locationCode">Dock Location <span class="required">*</span></label>
                             <input type="text" id="locationCode" name="locationCode"
-                                   class="form-control" placeholder="e.g. DOCK-A1" required>
+                                   class="form-control" placeholder="e.g. Patan Durbar Square" required>
                         </div>
                         <div class="form-group form-col-span-2">
                             <label class="form-label" for="description">Description</label>
@@ -116,7 +116,7 @@
                             <input type="text" name="locationCode" id="edit_locationCode" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Hourly Rate ($) <span class="required">*</span></label>
+                            <label class="form-label">Hourly Rate (NPR ) <span class="required">*</span></label>
                             <input type="number" name="hourlyRate" id="edit_hourlyRate"
                                    class="form-control" step="0.01" min="0" required>
                         </div>
@@ -190,7 +190,7 @@
                                             </c:choose>
                                         </td>
                                         <td>${bike.locationCode}</td>
-                                        <td><strong>$<fmt:formatNumber value="${bike.hourlyRate}" pattern="#,##0.00"/></strong></td>
+                                        <td><strong>NPR <fmt:formatNumber value="${bike.hourlyRate}" pattern="#,##0.00"/></strong></td>
                                         <td>
                                             <div class="td-actions">
                                                 <button class="btn btn-outline btn-sm"

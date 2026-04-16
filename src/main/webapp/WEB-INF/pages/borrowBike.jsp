@@ -73,7 +73,7 @@
                             <div class="detail-row">
                                 <span class="label">💰 Hourly Rate</span>
                                 <span class="value price">
-                                    $<fmt:formatNumber value="${selectedBike.hourlyRate}" pattern="#,##0.00"/> / hour
+                                    NPR <fmt:formatNumber value="${selectedBike.hourlyRate}" pattern="#,##0.00"/> / hour
                                 </span>
                             </div>
 
@@ -84,7 +84,7 @@
 
                             <div class="detail-row">
                                 <span class="label">⚠️ Late Fee</span>
-                                <span class="value" style="color:var(--clr-danger);">$2.50 per hour overdue</span>
+                                <span class="value" style="color:var(--clr-danger);">NPR 350.00 per hour overdue</span>
                             </div>
 
                             <c:if test="${not empty selectedBike.description}">

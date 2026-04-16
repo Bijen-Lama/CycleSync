@@ -59,7 +59,7 @@
                         <span class="fine-summary-icon">⚠️</span>
                         <div>
                             <div class="fine-summary-label">Total Outstanding Balance</div>
-                            <div class="fine-summary-amount">$<fmt:formatNumber value="${totalPending}" pattern="#,##0.00"/></div>
+                            <div class="fine-summary-amount">NPR <fmt:formatNumber value="${totalPending}" pattern="#,##0.00"/></div>
                         </div>
                     </div>
                     <span class="badge badge-danger" style="font-size:.8rem;">Action Required</span>
@@ -125,7 +125,7 @@
 
                                         <td>
                                             <strong style="color:var(--clr-danger);">
-                                                $<fmt:formatNumber value="${fine.fineAmount}" pattern="#,##0.00"/>
+                                                NPR <fmt:formatNumber value="${fine.fineAmount}" pattern="#,##0.00"/>
                                             </strong>
                                         </td>
 

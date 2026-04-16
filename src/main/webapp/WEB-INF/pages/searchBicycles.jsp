@@ -87,7 +87,7 @@
                                         </div>
                                     </c:if>
                                     <div class="bike-rate">
-                                        $<fmt:formatNumber value="${bike.hourlyRate}" pattern="#,##0.00"/>
+                                        NPR <fmt:formatNumber value="${bike.hourlyRate}" pattern="#,##0.00"/>
                                         <span>/ hour</span>
                                     </div>
                                 </div>

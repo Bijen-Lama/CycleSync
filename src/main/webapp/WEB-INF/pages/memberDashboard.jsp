@@ -52,7 +52,7 @@
                         <span class="fine-summary-icon">⚠️</span>
                         <div>
                             <div class="fine-summary-label">Outstanding Fine Balance</div>
-                            <div class="fine-summary-amount">$<fmt:formatNumber value="${totalPendingFine}" pattern="#,##0.00"/></div>
+                            <div class="fine-summary-amount">NPR <fmt:formatNumber value="${totalPendingFine}" pattern="#,##0.00"/></div>
                         </div>
                     </div>
                     <a href="${pageContext.request.contextPath}/fines" class="btn btn-danger btn-sm">View Fines →</a>
@@ -95,7 +95,7 @@
                                         </div>
 
                                         <div class="abp-due-warning">
-                                            ⚠️ Late returns are fined $2.50/hour after the due date.
+                                            ⚠️ Late returns are fined NPR 350.00/hour after the due date.
                                         </div>
 
                                         <form action="${pageContext.request.contextPath}/returnBike"
@@ -172,7 +172,7 @@
                                                 </div>
                                                 <c:if test="${not empty record.totalCost}">
                                                     <div class="timeline-cost">
-                                                        $<fmt:formatNumber value="${record.totalCost}" pattern="#,##0.00"/>
+                                                        NPR <fmt:formatNumber value="${record.totalCost}" pattern="#,##0.00"/>
                                                     </div>
                                                 </c:if>
                                             </div>
@@ -203,7 +203,7 @@
                             <div class="stat-card" style="box-shadow:none;border:1px solid var(--clr-border-light);">
                                 <div class="stat-icon ${totalPendingFine > 0 ? 'red' : 'green'}">💰</div>
                                 <div class="stat-info">
-                                    <div class="stat-value">$<fmt:formatNumber value="${totalPendingFine}" pattern="#,##0.00"/></div>
+                                    <div class="stat-value">NPR <fmt:formatNumber value="${totalPendingFine}" pattern="#,##0.00"/></div>
                                     <div class="stat-label">Pending Fines</div>
                                 </div>
                             </div>

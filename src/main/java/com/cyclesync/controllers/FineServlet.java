@@ -33,7 +33,7 @@ public class FineServlet extends BaseServlet {
                 request.setAttribute("totalPending",
                     fineService.getTotalPendingFinesByUser(user.getUserId()));
             }
-            request.getRequestDispatcher("/WEB-INF/pages/fines.jsp")
+            request.getRequestDispatcher("/WEB-INF/pages/fine.jsp")
                    .forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Error loading fines.", e);

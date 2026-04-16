@@ -153,7 +153,7 @@
                            id="userAddress"
                            name="userAddress"
                            class="form-control"
-                           placeholder="Your home address"
+                           placeholder="e.g. Thamel, Kathmandu"
                            value="${not empty param.userAddress ? param.userAddress : ''}"
                            autocomplete="street-address">
                 </div>
