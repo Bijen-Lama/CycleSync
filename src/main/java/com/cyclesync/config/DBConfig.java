@@ -28,6 +28,6 @@ public class DBConfig {
 	}
 	
 	public static void closeConnection() {
-		// No longer needed, Connections are automatically closed by DAOs' try-with-resources.
+		
 	}
 }
