@@ -1,74 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                    
+                        
+    
     
     
     
     <wb-module deploy-name="CycleSync">
-                                        
+                                                
+        
         
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                                        
+                                                
+        
         
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                
-        
-        
-        <dependent-module archiveName="mysql-connector-j-9.6.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0.jar">
+        <dependent-module archiveName="jakarta.servlet.jsp.jstl-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jakarta.servlet.jsp.jstl-api-2.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jbcrypt-0.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jbcrypt-0.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jakarta.servlet.jsp.jstl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jakarta.servlet.jsp.jstl-2.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jakarta.xml.bind-api-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jakarta.xml.bind-api-3.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-j-9.6.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jakarta.servlet-api-5.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jakarta.servlet-api-5.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jakarta.el-api-4.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jakarta.el-api-4.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jakarta.activation-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Acer/Downloads/Jar FIles/jakarta.activation-2.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
                                                 
-            
-            
-            <dependency-type>uses</dependency-type>
-                                            
         
-        
-        </dependent-module>
-                        
-        
-        <dependent-module archiveName="jbcrypt-0.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/jbcrypt-0.4.jar">
-                                    
-            
-            <dependency-type>uses</dependency-type>
-                                
-        
-        </dependent-module>
-        <dependent-module archiveName="jakarta.servlet-api-5.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/Jar FIles/jakarta.servlet-api-5.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jakarta.servlet.jsp.jstl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/Jar FIles/jakarta.servlet.jsp.jstl-2.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jakarta.servlet.jsp.jstl-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/Jar FIles/jakarta.servlet.jsp.jstl-api-2.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jakarta.el-api-4.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/Jar FIles/jakarta.el-api-4.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jakarta.activation-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/Jar FIles/jakarta.activation-2.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jakarta.xml.bind-api-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/Jar FIles/jakarta.xml.bind-api-3.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-                                        
         
         
         
         <property name="context-root" value="CycleSync"/>
-                                        
+                                                
+        
         
         
         
         <property name="java-output-path" value="/CycleSync/build/classes"/>
-                                    
+                                            
+    
     
     
     
     </wb-module>
-                
+                    
+
 
 
 
