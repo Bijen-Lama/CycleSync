@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConfig {
 	private static final String DB_NAME = "cyclesync_db";
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/"+DB_NAME;
+	private static final String URL = "jdbc:mysql://127.0.0.1:3307/"+DB_NAME;
 	private static final String USER = "root";
 	private static final String PASSWORD = "";
 	private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";

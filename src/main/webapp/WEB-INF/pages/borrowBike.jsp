@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -20,7 +23,7 @@
 
     <div class="main-content">
         <header class="topbar">
-            <span class="topbar-title">🚲 Confirm Borrow</span>
+            <span class="topbar-title"><i class="fa-solid fa-bicycle"></i> Confirm Borrow</span>
             <div class="topbar-actions">
                 <a href="${pageContext.request.contextPath}/searchBicycles" class="btn btn-ghost btn-sm">
                     ← Back to Search
@@ -31,7 +34,7 @@
         <main class="page-body">
 
             <c:if test="${not empty errorMessage}">
-                <div class="alert alert-error"><span class="alert-icon">⚠️</span> ${errorMessage}</div>
+                <div class="alert alert-error"><span class="alert-icon"><i data-lucide="alert-triangle"></i></span> ${errorMessage}</div>
             </c:if>
 
             <c:choose>
@@ -49,8 +52,8 @@
                             <c:choose>
                                 <c:when test="${selectedBike.bicycleType == 'MOUNTAIN'}"><span class="big-emoji">🏔</span></c:when>
                                 <c:when test="${selectedBike.bicycleType == 'ROAD'}"><span class="big-emoji">🛣</span></c:when>
-                                <c:when test="${selectedBike.bicycleType == 'ELECTRIC'}"><span class="big-emoji">⚡</span></c:when>
-                                <c:otherwise><span class="big-emoji">🚲</span></c:otherwise>
+                                <c:when test="${selectedBike.bicycleType == 'ELECTRIC'}"><span class="big-emoji"><i data-lucide="zap"></i></span></c:when>
+                                <c:otherwise><span class="big-emoji"><i class="fa-solid fa-bicycle"></i></span></c:otherwise>
                             </c:choose>
                             <h2>${selectedBike.bicycleName}</h2>
                             <p>Review the details below before confirming your borrow.</p>
@@ -66,12 +69,12 @@
                             </div>
 
                             <div class="detail-row">
-                                <span class="label">📍 Pick-up Location</span>
+                                <span class="label"><i data-lucide="map-pin"></i> Pick-up Location</span>
                                 <span class="value">${selectedBike.locationCode}</span>
                             </div>
 
                             <div class="detail-row">
-                                <span class="label">💰 Hourly Rate</span>
+                                <span class="label"><i data-lucide="wallet"></i> Hourly Rate</span>
                                 <span class="value price">
                                     NPR <fmt:formatNumber value="${selectedBike.hourlyRate}" pattern="#,##0.00"/> / hour
                                 </span>
@@ -83,7 +86,7 @@
                             </div>
 
                             <div class="detail-row">
-                                <span class="label">⚠️ Late Fee</span>
+                                <span class="label"><i data-lucide="alert-triangle"></i> Late Fee</span>
                                 <span class="value" style="color:var(--clr-danger);">NPR 350.00 per hour overdue</span>
                             </div>
 
@@ -101,7 +104,7 @@
                                   method="post" style="flex:1;">
                                 <input type="hidden" name="bicycleId" value="${selectedBike.bicycleId}">
                                 <button type="submit" class="btn btn-accent btn-lg" style="width:100%;justify-content:center;">
-                                    ✅ Confirm Borrow
+                                    <i data-lucide="check-circle-2"></i> Confirm Borrow
                                 </button>
                             </form>
                             <a href="${pageContext.request.contextPath}/searchBicycles"
@@ -118,5 +121,13 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

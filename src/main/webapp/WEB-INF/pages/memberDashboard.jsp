@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -23,7 +26,7 @@
             <span class="topbar-title">My Dashboard</span>
             <div class="topbar-actions">
                 <a href="${pageContext.request.contextPath}/searchBicycles" class="btn btn-primary btn-sm">
-                    🔍 Find a Bike
+                    <i data-lucide="search"></i> Find a Bike
                 </a>
             </div>
         </header>
@@ -32,16 +35,16 @@
 
             <!-- Flash Messages -->
             <c:if test="${not empty sessionScope.successMessage}">
-                <div class="alert alert-success"><span class="alert-icon">✅</span> ${sessionScope.successMessage}</div>
+                <div class="alert alert-success"><span class="alert-icon"><i data-lucide="check-circle-2"></i></span> ${sessionScope.successMessage}</div>
                 <c:remove var="successMessage" scope="session"/>
             </c:if>
             <c:if test="${not empty sessionScope.errorMessage}">
-                <div class="alert alert-error"><span class="alert-icon">⚠️</span> ${sessionScope.errorMessage}</div>
+                <div class="alert alert-error"><span class="alert-icon"><i data-lucide="alert-triangle"></i></span> ${sessionScope.errorMessage}</div>
                 <c:remove var="errorMessage" scope="session"/>
             </c:if>
 
             <div class="page-header">
-                <h2>Welcome back, ${sessionScope.loggedInUser.fullName} 🚴</h2>
+                <h2>Welcome back, ${sessionScope.loggedInUser.fullName} <i class="fa-solid fa-person-biking auth-hero-icon" style="font-size:4.5rem; color: #fff; margin-bottom: 24px; display: block;"></i></h2>
                 <p>Here's what's happening with your CycleSync account today.</p>
             </div>
 
@@ -49,7 +52,7 @@
             <c:if test="${totalPendingFine > 0}">
                 <div class="fine-summary">
                     <div class="fine-summary-left">
-                        <span class="fine-summary-icon">⚠️</span>
+                        <span class="fine-summary-icon"><i data-lucide="alert-triangle"></i></span>
                         <div>
                             <div class="fine-summary-label">Outstanding Fine Balance</div>
                             <div class="fine-summary-amount">NPR <fmt:formatNumber value="${totalPendingFine}" pattern="#,##0.00"/></div>
@@ -68,7 +71,7 @@
                     <!-- Active Borrow -->
                     <div class="card" style="margin-bottom:20px;">
                         <div class="card-header">
-                            <h3>🚲 Current Borrow</h3>
+                            <h3><i class="fa-solid fa-bicycle"></i> Current Borrow</h3>
                         </div>
                         <div class="card-body">
                             <c:choose>
@@ -95,7 +98,7 @@
                                         </div>
 
                                         <div class="abp-due-warning">
-                                            ⚠️ Late returns are fined NPR 350.00/hour after the due date.
+                                            <i data-lucide="alert-triangle"></i> Late returns are fined NPR 350.00/hour after the due date.
                                         </div>
 
                                         <form action="${pageContext.request.contextPath}/returnBike"
@@ -103,7 +106,7 @@
                                               onsubmit="return confirm('Confirm return of this bicycle?');">
                                             <input type="hidden" name="recordId" value="${activeBorrow.recordId}">
                                             <button type="submit" class="abp-return-btn">
-                                                ✅ Return This Bicycle
+                                                <i data-lucide="check-circle-2"></i> Return This Bicycle
                                             </button>
                                         </form>
                                     </div>
@@ -126,7 +129,7 @@
                     <!-- Recent History -->
                     <div class="card">
                         <div class="card-header">
-                            <h3>🕐 Recent Ride History</h3>
+                            <h3><i data-lucide="clock"></i> Recent Ride History</h3>
                             <a href="${pageContext.request.contextPath}/ridingHistory"
                                class="btn btn-ghost btn-sm">View All →</a>
                         </div>
@@ -134,7 +137,7 @@
                             <c:choose>
                                 <c:when test="${empty recentHistory}">
                                     <div class="empty-state" style="padding:32px 0;">
-                                        <div class="empty-state-icon">📭</div>
+                                        <div class="empty-state-icon"><i data-lucide="inbox"></i></div>
                                         <h4>No rides yet</h4>
                                         <p>Your ride history will appear here.</p>
                                     </div>
@@ -194,14 +197,14 @@
                         <div class="card-header"><h3>📊 My Stats</h3></div>
                         <div class="card-body" style="display:flex;flex-direction:column;gap:14px;">
                             <div class="stat-card" style="box-shadow:none;border:1px solid var(--clr-border-light);">
-                                <div class="stat-icon primary">🚲</div>
+                                <div class="stat-icon primary"><i class="fa-solid fa-bicycle"></i></div>
                                 <div class="stat-info">
                                     <div class="stat-value">${recentHistory.size()}</div>
                                     <div class="stat-label">Total Rides</div>
                                 </div>
                             </div>
                             <div class="stat-card" style="box-shadow:none;border:1px solid var(--clr-border-light);">
-                                <div class="stat-icon ${totalPendingFine > 0 ? 'red' : 'green'}">💰</div>
+                                <div class="stat-icon ${totalPendingFine > 0 ? 'red' : 'green'}"><i data-lucide="wallet"></i></div>
                                 <div class="stat-info">
                                     <div class="stat-value">NPR <fmt:formatNumber value="${totalPendingFine}" pattern="#,##0.00"/></div>
                                     <div class="stat-label">Pending Fines</div>
@@ -212,19 +215,19 @@
 
                     <!-- Quick Links -->
                     <div class="card">
-                        <div class="card-header"><h3>⚡ Quick Links</h3></div>
+                        <div class="card-header"><h3><i data-lucide="zap"></i> Quick Links</h3></div>
                         <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
                             <a href="${pageContext.request.contextPath}/searchBicycles"
                                class="btn btn-primary" style="justify-content:flex-start;">
-                                🔍 Find Available Bikes
+                                <i data-lucide="search"></i> Find Available Bikes
                             </a>
                             <a href="${pageContext.request.contextPath}/ridingHistory"
                                class="btn btn-outline" style="justify-content:flex-start;">
-                                🕐 Full Ride History
+                                <i data-lucide="clock"></i> Full Ride History
                             </a>
                             <a href="${pageContext.request.contextPath}/fines"
                                class="btn btn-outline" style="justify-content:flex-start;">
-                                💰 My Fines
+                                <i data-lucide="wallet"></i> My Fines
                             </a>
                         </div>
                     </div>
@@ -236,5 +239,13 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

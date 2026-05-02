@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -25,7 +28,7 @@
         <header class="topbar">
             <span class="topbar-title">Admin Dashboard</span>
             <div class="topbar-actions">
-                <span class="topbar-badge">🟢 System Online</span>
+                <span class="topbar-badge"><span style="display:inline-block;width:8px;height:8px;background:#3dba6f;border-radius:50%;"></span> System Online</span>
             </div>
         </header>
 
@@ -34,13 +37,13 @@
             <!-- Flash Messages -->
             <c:if test="${not empty sessionScope.successMessage}">
                 <div class="alert alert-success">
-                    <span class="alert-icon">✅</span> ${sessionScope.successMessage}
+                    <span class="alert-icon"><i data-lucide="check-circle-2"></i></span> ${sessionScope.successMessage}
                 </div>
                 <c:remove var="successMessage" scope="session"/>
             </c:if>
             <c:if test="${not empty sessionScope.errorMessage}">
                 <div class="alert alert-error">
-                    <span class="alert-icon">⚠️</span> ${sessionScope.errorMessage}
+                    <span class="alert-icon"><i data-lucide="alert-triangle"></i></span> ${sessionScope.errorMessage}
                 </div>
                 <c:remove var="errorMessage" scope="session"/>
             </c:if>
@@ -54,42 +57,42 @@
             <!-- Stats Grid -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon green">🚲</div>
+                    <div class="stat-icon green"><i class="fa-solid fa-bicycle"></i></div>
                     <div class="stat-info">
                         <div class="stat-value">${totalAvailable}</div>
                         <div class="stat-label">Available Bikes</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon blue">🔄</div>
+                    <div class="stat-icon blue"><i data-lucide="arrow-left-right"></i></div>
                     <div class="stat-info">
                         <div class="stat-value">${totalBorrowed}</div>
                         <div class="stat-label">Currently Borrowed</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon orange">🔧</div>
+                    <div class="stat-icon orange"><i data-lucide="wrench"></i></div>
                     <div class="stat-info">
                         <div class="stat-value">${totalMaintenance}</div>
                         <div class="stat-label">In Maintenance</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon primary">👥</div>
+                    <div class="stat-icon primary"><i data-lucide="users"></i></div>
                     <div class="stat-info">
                         <div class="stat-value">${totalMembers}</div>
                         <div class="stat-label">Total Members</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon info">📋</div>
+                    <div class="stat-icon info"><i data-lucide="clipboard-list"></i></div>
                     <div class="stat-info">
                         <div class="stat-value">${activeLoans}</div>
                         <div class="stat-label">Active Loans</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon red">💰</div>
+                    <div class="stat-icon red"><i data-lucide="wallet"></i></div>
                     <div class="stat-info">
                         <div class="stat-value">${pendingFines}</div>
                         <div class="stat-label">Pending Fines</div>
@@ -100,17 +103,17 @@
             <!-- Quick Actions -->
             <div class="card" style="margin-bottom:20px;">
                 <div class="card-header">
-                    <h3>⚡ Quick Actions</h3>
+                    <h3><i data-lucide="zap"></i> Quick Actions</h3>
                 </div>
                 <div class="card-body" style="display:flex;gap:12px;flex-wrap:wrap;">
                     <a href="${pageContext.request.contextPath}/manageBicycles" class="btn btn-primary">
-                        🚲 Manage Bikes
+                        <i class="fa-solid fa-bicycle"></i> Manage Bikes
                     </a>
                     <a href="${pageContext.request.contextPath}/manageMembers" class="btn btn-outline">
-                        👥 Manage Members
+                        <i data-lucide="users"></i> Manage Members
                     </a>
                     <a href="${pageContext.request.contextPath}/fines" class="btn btn-outline">
-                        💰 View Fines
+                        <i data-lucide="wallet"></i> View Fines
                     </a>
                 </div>
             </div>
@@ -118,7 +121,7 @@
             <!-- Recent Borrow Records -->
             <div class="card">
                 <div class="card-header">
-                    <h3>📋 Recent Borrow Records</h3>
+                    <h3><i data-lucide="clipboard-list"></i> Recent Borrow Records</h3>
                     <span class="badge badge-info">Live</span>
                 </div>
 
@@ -126,7 +129,7 @@
                     <c:choose>
                         <c:when test="${empty recentRecords}">
                             <div class="empty-state">
-                                <div class="empty-state-icon">📭</div>
+                                <div class="empty-state-icon"><i data-lucide="inbox"></i></div>
                                 <h4>No borrow records yet</h4>
                                 <p>Records will appear here once members start borrowing bikes.</p>
                             </div>
@@ -212,5 +215,13 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

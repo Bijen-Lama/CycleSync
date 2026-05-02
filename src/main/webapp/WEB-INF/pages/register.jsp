@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -17,7 +20,7 @@
     <!-- ── Left Brand Panel ────────────────────────────────────── -->
     <div class="auth-panel-left">
         <div class="auth-brand">
-            <div class="auth-brand-icon">🚲</div>
+            <div class="auth-brand-icon"><i class="fa-solid fa-bicycle"></i></div>
             <div>
                 <div class="auth-brand-name">CycleSync</div>
                 <div class="auth-brand-tagline">Eco Bicycle Sharing</div>
@@ -64,7 +67,7 @@
 
         <c:if test="${not empty errorMessage}">
             <div class="alert alert-error">
-                <span class="alert-icon">⚠️</span>
+                <span class="alert-icon"><i data-lucide="alert-triangle"></i></span>
                 ${errorMessage}
             </div>
         </c:if>
@@ -74,7 +77,7 @@
             <div class="form-group">
                 <label class="form-label" for="fullName">Full Name <span class="required">*</span></label>
                 <div class="input-wrap">
-                    <span class="input-icon">👤</span>
+                    <span class="input-icon"><i data-lucide="user"></i></span>
                     <input type="text"
                            id="fullName"
                            name="fullName"
@@ -89,7 +92,7 @@
             <div class="form-group">
                 <label class="form-label" for="userEmail">Email Address <span class="required">*</span></label>
                 <div class="input-wrap">
-                    <span class="input-icon">✉️</span>
+                    <span class="input-icon"><i data-lucide="mail"></i></span>
                     <input type="email"
                            id="userEmail"
                            name="userEmail"
@@ -105,7 +108,7 @@
                 <div class="form-group">
                     <label class="form-label" for="userPassword">Password <span class="required">*</span></label>
                     <div class="input-wrap">
-                        <span class="input-icon">🔒</span>
+                        <span class="input-icon"><i data-lucide="lock"></i></span>
                         <input type="password"
                                id="userPassword"
                                name="userPassword"
@@ -119,7 +122,7 @@
                 <div class="form-group">
                     <label class="form-label" for="confirmPassword">Confirm Password <span class="required">*</span></label>
                     <div class="input-wrap">
-                        <span class="input-icon">🔒</span>
+                        <span class="input-icon"><i data-lucide="lock"></i></span>
                         <input type="password"
                                id="confirmPassword"
                                name="confirmPassword"
@@ -134,7 +137,7 @@
             <div class="form-group">
                 <label class="form-label" for="phoneNumber">Phone Number</label>
                 <div class="input-wrap">
-                    <span class="input-icon">📱</span>
+                    <span class="input-icon"><i data-lucide="smartphone"></i></span>
                     <input type="tel"
                            id="phoneNumber"
                            name="phoneNumber"
@@ -148,7 +151,7 @@
             <div class="form-group">
                 <label class="form-label" for="userAddress">Address</label>
                 <div class="input-wrap">
-                    <span class="input-icon">📍</span>
+                    <span class="input-icon"><i data-lucide="map-pin"></i></span>
                     <input type="text"
                            id="userAddress"
                            name="userAddress"
@@ -180,5 +183,13 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

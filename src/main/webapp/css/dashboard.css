@@ -48,7 +48,7 @@
 }
 
 .bike-card-emoji {
-    font-size: 2.4rem;
+    width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
     margin-bottom: 8px;
     display: block;
 }
@@ -72,9 +72,9 @@
     letter-spacing: .4px;
 }
 
-.status-available  { background: rgba(61,218,132,.2); color: #3dda84; }
-.status-borrowed   { background: rgba(255,190,60,.2);  color: #ffbe3c; }
-.status-maintenance{ background: rgba(255,100,80,.2);  color: #ff6450; }
+.status-available  { background: transparent; color: #3dda84; }
+.status-borrowed   { background: transparent;  color: #ffbe3c; }
+.status-maintenance{ background: transparent;  color: #ff6450; }
 
 .bike-card-body {
     padding: 16px 20px 20px;
@@ -389,3 +389,12 @@
     .bikes-grid { grid-template-columns: 1fr; }
     .borrow-confirm-footer { flex-direction: column; }
 }
+.bike-card-emoji svg { width: 100%; height: 100%; stroke-width: 1.5px; opacity: 0.9; color: #fff; }
+
+.bike-card-emoji .fa-bicycle { font-size: 2rem; color: #fff; }
+
+.stat-icon svg { width: 24px; height: 24px; stroke-width: 2px; }
+
+.stat-icon .fa-bicycle { font-size: 1.2rem; }
+
+.fine-summary-icon svg { width: 32px; height: 32px; stroke-width: 1.5px; color: var(--clr-danger); }

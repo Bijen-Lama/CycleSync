@@ -21,7 +21,7 @@
 <aside class="sidebar">
     <a href="${pageContext.request.contextPath}/<%= sidebarUser != null && sidebarUser.isAdmin() ? "adminDashboard" : "memberDashboard" %>"
        class="sidebar-brand">
-        <div class="sidebar-brand-icon">🚲</div>
+        <div class="sidebar-brand-icon"><i class="fa-solid fa-bicycle"></i></div>
         <div>
             <div class="sidebar-brand-text">CycleSync</div>
             <div class="sidebar-brand-sub">Bicycle Sharing</div>
@@ -35,19 +35,19 @@
 
             <a href="${pageContext.request.contextPath}/adminDashboard"
                class="sidebar-link <%= "adminDashboard".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">🏠</span> Dashboard
+                <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> Dashboard
             </a>
             <a href="${pageContext.request.contextPath}/manageBicycles"
                class="sidebar-link <%= "manageBicycles".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">🚲</span> Manage Bikes
+                <span class="nav-icon"><i class="fa-solid fa-bicycle"></i></span> Manage Bikes
             </a>
             <a href="${pageContext.request.contextPath}/manageMembers"
                class="sidebar-link <%= "manageMembers".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">👥</span> Manage Members
+                <span class="nav-icon"><i data-lucide="users"></i></span> Manage Members
             </a>
             <a href="${pageContext.request.contextPath}/fines"
                class="sidebar-link <%= "fines".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">💰</span> Fine Management
+                <span class="nav-icon"><i data-lucide="wallet"></i></span> Fine Management
             </a>
 
         <% } else { %>
@@ -55,26 +55,26 @@
 
             <a href="${pageContext.request.contextPath}/memberDashboard"
                class="sidebar-link <%= "memberDashboard".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">🏠</span> My Dashboard
+                <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> My Dashboard
             </a>
             <a href="${pageContext.request.contextPath}/searchBicycles"
                class="sidebar-link <%= "searchBicycles".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">🔍</span> Find a Bike
+                <span class="nav-icon"><i data-lucide="search"></i></span> Find a Bike
             </a>
             <a href="${pageContext.request.contextPath}/ridingHistory"
                class="sidebar-link <%= "ridingHistory".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">🕐</span> Ride History
+                <span class="nav-icon"><i data-lucide="clock"></i></span> Ride History
             </a>
             <a href="${pageContext.request.contextPath}/fines"
                class="sidebar-link <%= "fines".equals(activePage) ? "active" : "" %>">
-                <span class="nav-icon">💰</span> My Fines
+                <span class="nav-icon"><i data-lucide="wallet"></i></span> My Fines
             </a>
 
         <% } %>
 
         <div class="sidebar-section-label">Account</div>
         <a href="${pageContext.request.contextPath}/logout" class="sidebar-link">
-            <span class="nav-icon">🚪</span> Sign Out
+            <span class="nav-icon"><i data-lucide="log-out"></i></span> Sign Out
         </a>
 
     </nav>

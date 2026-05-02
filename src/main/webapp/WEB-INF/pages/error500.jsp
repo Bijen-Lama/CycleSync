@@ -93,12 +93,15 @@
             font-family: var(--font-body);
         }
     </style>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="error-page-wrap">
 
         <div class="error-code">500</div>
-        <span class="error-emoji">⚙️</span>
+        <span class="error-emoji"><i data-lucide="settings"></i></span>
 
         <h2 class="error-title">Something went wrong.</h2>
         <p class="error-desc">
@@ -109,7 +112,7 @@
 
         <div class="error-actions">
             <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">
-                🏠 Go Home
+                <i data-lucide="layout-dashboard"></i> Go Home
             </a>
             <a href="javascript:history.back()" class="btn btn-outline">
                 ← Try Again
@@ -128,5 +131,13 @@
         <% } %>
 
     </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

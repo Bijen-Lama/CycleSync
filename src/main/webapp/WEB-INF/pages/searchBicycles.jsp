@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -20,7 +23,7 @@
 
     <div class="main-content">
         <header class="topbar">
-            <span class="topbar-title">🔍 Find a Bike</span>
+            <span class="topbar-title"><i data-lucide="search"></i> Find a Bike</span>
         </header>
 
         <main class="page-body">
@@ -38,7 +41,7 @@
                         <option value="ALL"      ${selectedType == 'ALL'      ? 'selected' : ''}>All Types</option>
                         <option value="MOUNTAIN" ${selectedType == 'MOUNTAIN' ? 'selected' : ''}>🏔 Mountain</option>
                         <option value="ROAD"     ${selectedType == 'ROAD'     ? 'selected' : ''}>🛣 Road</option>
-                        <option value="ELECTRIC" ${selectedType == 'ELECTRIC' ? 'selected' : ''}>⚡ Electric</option>
+                        <option value="ELECTRIC" ${selectedType == 'ELECTRIC' ? 'selected' : ''}><i data-lucide="zap"></i> Electric</option>
                         <option value="HYBRID"   ${selectedType == 'HYBRID'   ? 'selected' : ''}>🔀 Hybrid</option>
                     </select>
 
@@ -52,7 +55,7 @@
             <c:choose>
                 <c:when test="${empty bikeResults}">
                     <div class="empty-state" style="background:var(--clr-surface);border:1px solid var(--clr-border-light);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);">
-                        <div class="empty-state-icon">🔍</div>
+                        <div class="empty-state-icon"><i data-lucide="search"></i></div>
                         <h4>No bikes available</h4>
                         <p>No bikes match your filter right now. Try a different type or check back later.</p>
                     </div>
@@ -65,8 +68,8 @@
                                     <c:choose>
                                         <c:when test="${bike.bicycleType == 'MOUNTAIN'}"><span class="bike-card-emoji">🏔</span></c:when>
                                         <c:when test="${bike.bicycleType == 'ROAD'}"><span class="bike-card-emoji">🛣</span></c:when>
-                                        <c:when test="${bike.bicycleType == 'ELECTRIC'}"><span class="bike-card-emoji">⚡</span></c:when>
-                                        <c:otherwise><span class="bike-card-emoji">🚲</span></c:otherwise>
+                                        <c:when test="${bike.bicycleType == 'ELECTRIC'}"><span class="bike-card-emoji"><i data-lucide="zap"></i></span></c:when>
+                                        <c:otherwise><span class="bike-card-emoji"><i class="fa-solid fa-bicycle"></i></span></c:otherwise>
                                     </c:choose>
                                     <div class="bike-card-name">${bike.bicycleName}</div>
                                     <span class="bike-card-status-badge status-available">Available</span>
@@ -77,7 +80,7 @@
                                         <span class="type-tag type-${fn:toLowerCase(bike.bicycleType)}">${bike.bicycleType}</span>
                                     </div>
                                     <div class="bike-meta-row">
-                                        <span class="meta-icon">📍</span>
+                                        <span class="meta-icon"><i data-lucide="map-pin"></i></span>
                                         ${bike.locationCode}
                                     </div>
                                     <c:if test="${not empty bike.description}">
@@ -107,5 +110,13 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

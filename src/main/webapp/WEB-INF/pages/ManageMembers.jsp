@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -19,17 +22,17 @@
 
     <div class="main-content">
         <header class="topbar">
-            <span class="topbar-title">👥 Manage Members</span>
+            <span class="topbar-title"><i data-lucide="users"></i> Manage Members</span>
         </header>
 
         <main class="page-body">
 
             <c:if test="${not empty sessionScope.successMessage}">
-                <div class="alert alert-success"><span class="alert-icon">✅</span> ${sessionScope.successMessage}</div>
+                <div class="alert alert-success"><span class="alert-icon"><i data-lucide="check-circle-2"></i></span> ${sessionScope.successMessage}</div>
                 <c:remove var="successMessage" scope="session"/>
             </c:if>
             <c:if test="${not empty sessionScope.errorMessage}">
-                <div class="alert alert-error"><span class="alert-icon">⚠️</span> ${sessionScope.errorMessage}</div>
+                <div class="alert alert-error"><span class="alert-icon"><i data-lucide="alert-triangle"></i></span> ${sessionScope.errorMessage}</div>
                 <c:remove var="errorMessage" scope="session"/>
             </c:if>
 
@@ -48,7 +51,7 @@
                 <c:choose>
                     <c:when test="${empty memberList}">
                         <div class="empty-state">
-                            <div class="empty-state-icon">👥</div>
+                            <div class="empty-state-icon"><i data-lucide="users"></i></div>
                             <h4>No members registered yet</h4>
                             <p>Members will appear here after they register on the platform.</p>
                         </div>
@@ -117,7 +120,7 @@
                                                       onsubmit="return confirm('Permanently delete this member account?');">
                                                     <input type="hidden" name="userId" value="${member.userId}">
                                                     <input type="hidden" name="action" value="delete">
-                                                    <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i data-lucide="trash-2"></i> Delete</button>
                                                 </form>
                                             </div>
                                         </td>
@@ -133,5 +136,13 @@
     </div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

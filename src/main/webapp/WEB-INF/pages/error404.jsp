@@ -27,6 +27,9 @@
         .error-desc { color:var(--clr-text-secondary); font-size:.95rem; margin-bottom:28px; line-height:1.7; }
         .error-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
     </style>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="error-page-wrap">
@@ -39,12 +42,20 @@
         </p>
         <div class="error-actions">
             <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">
-                🏠 Go Home
+                <i data-lucide="layout-dashboard"></i> Go Home
             </a>
             <a href="javascript:history.back()" class="btn btn-outline">
                 ← Go Back
             </a>
         </div>
     </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>

@@ -184,11 +184,32 @@ public class UserDao {
     // ----------------------------------------------------------------
 
     public boolean deleteUser(int userId) throws SQLException {
-        try (Connection conn = DBConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL_DELETE)) {
-
-            ps.setInt(1, userId);
-            return ps.executeUpdate() > 0;
+        try (Connection conn = DBConfig.getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                // Delete child fines first
+                try (PreparedStatement ps = conn.prepareStatement("DELETE FROM fines WHERE recordId IN (SELECT recordId FROM borrow_records WHERE userId = ?)")) {
+                    ps.setInt(1, userId);
+                    ps.executeUpdate();
+                }
+                // Delete child borrow_records
+                try (PreparedStatement ps = conn.prepareStatement("DELETE FROM borrow_records WHERE userId = ?")) {
+                    ps.setInt(1, userId);
+                    ps.executeUpdate();
+                }
+                // Finally, delete the user
+                try (PreparedStatement ps = conn.prepareStatement(SQL_DELETE)) {
+                    ps.setInt(1, userId);
+                    int res = ps.executeUpdate();
+                    conn.commit();
+                    return res > 0;
+                }
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
+            }
         }
     }
 }

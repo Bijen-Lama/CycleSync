@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tables.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -21,7 +24,7 @@
 
     <div class="main-content">
         <header class="topbar">
-            <span class="topbar-title">🚲 Manage Bicycles</span>
+            <span class="topbar-title"><i class="fa-solid fa-bicycle"></i> Manage Bicycles</span>
             <div class="topbar-actions">
                 <button class="btn btn-primary btn-sm" onclick="toggleAddForm()">+ Add New Bike</button>
             </div>
@@ -31,11 +34,11 @@
 
             <!-- Flash Messages -->
             <c:if test="${not empty sessionScope.successMessage}">
-                <div class="alert alert-success"><span class="alert-icon">✅</span> ${sessionScope.successMessage}</div>
+                <div class="alert alert-success"><span class="alert-icon"><i data-lucide="check-circle-2"></i></span> ${sessionScope.successMessage}</div>
                 <c:remove var="successMessage" scope="session"/>
             </c:if>
             <c:if test="${not empty sessionScope.errorMessage}">
-                <div class="alert alert-error"><span class="alert-icon">⚠️</span> ${sessionScope.errorMessage}</div>
+                <div class="alert alert-error"><span class="alert-icon"><i data-lucide="alert-triangle"></i></span> ${sessionScope.errorMessage}</div>
                 <c:remove var="errorMessage" scope="session"/>
             </c:if>
 
@@ -85,7 +88,7 @@
 
             <!-- Edit Bike Form (hidden by default) -->
             <div class="form-panel" id="editBikeForm" style="display:none;">
-                <div class="form-panel-title">✏️ Edit Bicycle</div>
+                <div class="form-panel-title"><i data-lucide="edit-2"></i> Edit Bicycle</div>
                 <form action="${pageContext.request.contextPath}/manageBicycles" method="post">
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="bicycleId" id="edit_bicycleId">
@@ -145,7 +148,7 @@
                 <c:choose>
                     <c:when test="${empty bicycleList}">
                         <div class="empty-state">
-                            <div class="empty-state-icon">🚲</div>
+                            <div class="empty-state-icon"><i class="fa-solid fa-bicycle"></i></div>
                             <h4>No bicycles added yet</h4>
                             <p>Click "Add New Bike" to start building your fleet.</p>
                         </div>
@@ -202,7 +205,7 @@
                                                         '${bike.locationCode}',
                                                         '${bike.hourlyRate}',
                                                         '${bike.description}'
-                                                    )">✏️ Edit</button>
+                                                    )"><i data-lucide="edit-2"></i> Edit</button>
 
                                                 <form action="${pageContext.request.contextPath}/manageBicycles"
                                                       method="post"
@@ -210,7 +213,7 @@
                                                       style="display:inline;">
                                                     <input type="hidden" name="action" value="delete">
                                                     <input type="hidden" name="bicycleId" value="${bike.bicycleId}">
-                                                    <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i data-lucide="trash-2"></i> Delete</button>
                                                 </form>
                                             </div>
                                         </td>
@@ -254,5 +257,13 @@
     }
 </script>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 </html>
