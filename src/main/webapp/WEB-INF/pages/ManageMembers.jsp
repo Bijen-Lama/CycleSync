@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
 <% request.setAttribute("activePage", "manageMembers"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,10 +114,16 @@
                                                     </c:choose>
                                                 </form>
 
+                                                <!-- Impersonate -->
+                                                <a href="${pageContext.request.contextPath}/impersonate?userId=${member.userId}" 
+                                                   class="btn btn-outline btn-sm" data-confirm="Are you sure you want to impersonate this member?" data-confirm-type="info" data-confirm-title="Impersonate Member">
+                                                   <i data-lucide="eye"></i> Impersonate
+                                                </a>
+
                                                 <!-- Delete -->
                                                 <form action="${pageContext.request.contextPath}/manageMembers"
                                                       method="post" style="display:inline;"
-                                                      onsubmit="return confirm('Permanently delete this member account?');">
+                                                      data-confirm="Permanently delete this member account?">
                                                     <input type="hidden" name="userId" value="${member.userId}">
                                                     <input type="hidden" name="action" value="delete">
                                                     <button type="submit" class="btn btn-danger btn-sm"><i data-lucide="trash-2"></i> Delete</button>
@@ -144,5 +150,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

@@ -11,6 +11,9 @@ public class BicycleModel {
 	private String locationCode;
 	private BigDecimal hourlyRate;
 	private String description;
+	private String cityName;
+	private double latitude;
+	private double longitude;
 	private Timestamp addedAt;
 	private Timestamp updatedAt;
 	
@@ -111,6 +114,15 @@ public class BicycleModel {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	public double getLatitude() { return latitude; }
+	public void setLatitude(double latitude) { this.latitude = latitude; }
+	
+	public double getLongitude() { return longitude; }
+	public void setLongitude(double longitude) { this.longitude = longitude; }
+	
+	public String getCityName() { return cityName; }
+	public void setCityName(String cityName) { this.cityName = cityName; }
 	
 	public boolean isAvailable() { return "AVAILABLE".equalsIgnoreCase(this.bicycleStatus); }
     public boolean isBorrowed() { return "BORROWED".equalsIgnoreCase(this.bicycleStatus); }

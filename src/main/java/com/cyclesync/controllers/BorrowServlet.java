@@ -49,8 +49,19 @@ public class BorrowServlet extends BaseServlet {
 
         try {
             int bicycleId = Integer.parseInt(request.getParameter("bicycleId"));
-            borrowService.borrowBicycle(user.getUserId(), bicycleId);
-            request.getSession().setAttribute("successMessage", "Bicycle borrowed! Return within 24 hours.");
+            int recordId = borrowService.borrowBicycle(user.getUserId(), bicycleId);
+            
+            // Log a pending transaction
+            try (java.sql.Connection conn = com.cyclesync.config.DBConfig.getConnection()) {
+                try (java.sql.PreparedStatement ps = conn.prepareStatement(
+                        "INSERT INTO transactions (recordId, userId, amount, currency, status) VALUES (?, ?, 0, 'NPR', 'PENDING')")) {
+                    ps.setInt(1, recordId);
+                    ps.setInt(2, user.getUserId());
+                    ps.executeUpdate();
+                }
+            }
+
+            request.getSession().setAttribute("successMessage", "Bicycle borrowed successfully! Return within 24 hours.");
             response.sendRedirect(response.encodeRedirectURL("memberDashboard"));
 
         } catch (IllegalArgumentException | IllegalStateException e) {

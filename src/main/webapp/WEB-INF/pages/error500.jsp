@@ -68,30 +68,7 @@
             flex-wrap: wrap;
         }
 
-        /* Dev-only error detail box — hide in production */
-        .error-detail {
-            margin-top: 32px;
-            background: #1a1a2e;
-            border-radius: var(--radius-md);
-            padding: 18px 20px;
-            text-align: left;
-            font-family: 'Courier New', monospace;
-            font-size: .78rem;
-            color: #e0e0e0;
-            border: 1px solid rgba(255,255,255,.08);
-            max-height: 180px;
-            overflow-y: auto;
-        }
 
-        .error-detail-label {
-            font-size: .7rem;
-            color: #ff6b6b;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .8px;
-            margin-bottom: 8px;
-            font-family: var(--font-body);
-        }
     </style>
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -119,16 +96,7 @@
             </a>
         </div>
 
-        <%-- ─── DEV ONLY: show exception message ─────────────────────────
-             Remove or comment this block before going to production.
-             Raw stack traces must never be visible to end users.
-        ──────────────────────────────────────────────────────────────── --%>
-        <% if (exception != null) { %>
-        <div class="error-detail">
-            <div class="error-detail-label">⚠ Dev Info — Remove before production</div>
-            <%= exception.getClass().getName() %>: <%= exception.getMessage() %>
-        </div>
-        <% } %>
+
 
     </div>
 
@@ -139,5 +107,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

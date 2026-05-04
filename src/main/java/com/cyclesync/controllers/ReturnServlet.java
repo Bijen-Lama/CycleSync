@@ -11,7 +11,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/returnBike")
+@WebServlet("/returnBike_legacy")
 public class ReturnServlet extends BaseServlet {
 
     private final BorrowService borrowService = new BorrowService();

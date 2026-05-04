@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,6 +129,14 @@
             <a href="${pageContext.request.contextPath}/register">Create one free</a>
         </div>
 
+        <div style="margin-top: 24px; text-align: center; font-size: 0.82rem;">
+            <a href="${pageContext.request.contextPath}/about" style="color: var(--clr-text-light); text-decoration: underline;">About Us</a>
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/terms" style="color: var(--clr-text-light); text-decoration: underline;">Terms &amp; Conditions</a>
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/privacy" style="color: var(--clr-text-light); text-decoration: underline;">Privacy Policy</a>
+        </div>
+
     </div>
 </div>
 
@@ -140,5 +148,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

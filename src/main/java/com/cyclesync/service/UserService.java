@@ -29,7 +29,7 @@ public class UserService {
      */
     public int registerMember(String fullName, String userEmail,
                               String userPassword, String phoneNumber,
-                              String userAddress) throws SQLException {
+                              String userAddress, String nationality) throws SQLException {
 
         if (userDao.emailExists(userEmail)) {
             throw new IllegalArgumentException("An account with this email already exists.");
@@ -40,6 +40,7 @@ public class UserService {
 
         UserModel newUser = new UserModel(fullName, userEmail,
                                           hashedPassword, phoneNumber, userAddress);
+        newUser.setNationality(nationality != null && !nationality.trim().isEmpty() ? nationality : "Nepalese");
         return userDao.insertUser(newUser);
     }
 
@@ -90,55 +91,20 @@ public class UserService {
     // Profile Management (Member self-service)
     // ----------------------------------------------------------------
 
-    public boolean updateProfile(int userId, String fullName,
-                                 String phoneNumber, String userAddress) throws SQLException {
+    public boolean updateProfile(int userId, String fullName, String userEmail,
+                                 String phoneNumber, String nationality) throws SQLException {
         if (fullName == null || fullName.trim().isEmpty()) {
             throw new IllegalArgumentException("Full name cannot be empty.");
         }
-        return userDao.updateProfile(userId, fullName.trim(), phoneNumber, userAddress);
+        if (userEmail == null || userEmail.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be empty.");
+        }
+        return userDao.updateProfile(userId, fullName.trim(), userEmail.trim(), phoneNumber, nationality);
     }
-    
-    public UserModel loginUser1(String userEmail, String userPassword) throws SQLException {
 
-        System.out.println("===========================================");
-        System.out.println("[LOGIN] Email received    : '" + userEmail + "'");
-        System.out.println("[LOGIN] Password received : '" + userPassword + "'");
-        System.out.println("[LOGIN] Password length   : " + userPassword.length());
-
-        UserModel user = userDao.findByEmail(userEmail);
-
-        System.out.println("[LOGIN] DB lookup result  : " + (user == null ? "NULL - not found" : "FOUND userId=" + user.getUserId()));
-
-        if (user == null) {
-            System.out.println("[LOGIN] FAIL — no account with that email");
-            return null;
-        }
-
-        System.out.println("[LOGIN] accountStatus     : " + user.getAccountStatus());
-        System.out.println("[LOGIN] userRole          : " + user.getUserRole());
-        System.out.println("[LOGIN] hash in DB        : " + user.getUserPassword());
-
-        if (!user.isActive()) {
-            System.out.println("[LOGIN] FAIL — account is SUSPENDED");
-            return null;
-        }
-
-        boolean match = false;
-        try {
-            match = BCrypt.checkpw(userPassword, user.getUserPassword());
-            System.out.println("[LOGIN] BCrypt.checkpw   : " + match);
-        } catch (Exception e) {
-            System.out.println("[LOGIN] BCrypt EXCEPTION : " + e.getClass().getName() + " - " + e.getMessage());
-            System.out.println("[LOGIN] Is jbcrypt JAR missing from WEB-INF/lib?");
-        }
-
-        if (match) {
-            System.out.println("[LOGIN] SUCCESS — returning user");
-            return user;
-        }
-
-        System.out.println("[LOGIN] FAIL — password did not match hash");
-        System.out.println("===========================================");
-        return null;
+    public boolean updatePassword(int userId, String newPassword) throws SQLException {
+        if (newPassword == null || newPassword.trim().isEmpty()) return false;
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt(12));
+        return userDao.updatePassword(userId, hashedPassword);
     }
 }

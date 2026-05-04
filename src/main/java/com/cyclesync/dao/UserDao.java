@@ -16,8 +16,8 @@ public class UserDao {
     // SQL Constants
     // ----------------------------------------------------------------
     private static final String SQL_INSERT =
-        "INSERT INTO users (fullName, userEmail, userPassword, phoneNumber, userAddress, userRole, accountStatus) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO users (fullName, userEmail, userPassword, phoneNumber, userAddress, userRole, accountStatus, nationality) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_FIND_BY_EMAIL =
         "SELECT * FROM users WHERE userEmail = ?";
@@ -35,7 +35,10 @@ public class UserDao {
         "UPDATE users SET accountStatus = ? WHERE userId = ?";
 
     private static final String SQL_UPDATE_PROFILE =
-        "UPDATE users SET fullName = ?, phoneNumber = ?, userAddress = ? WHERE userId = ?";
+        "UPDATE users SET fullName = ?, userEmail = ?, phoneNumber = ?, nationality = ? WHERE userId = ?";
+
+    private static final String SQL_UPDATE_PASSWORD =
+        "UPDATE users SET userPassword = ? WHERE userId = ?";
 
     private static final String SQL_EMAIL_EXISTS =
         "SELECT COUNT(*) FROM users WHERE userEmail = ?";
@@ -56,6 +59,7 @@ public class UserDao {
         user.setUserAddress(rs.getString("userAddress"));
         user.setUserRole(rs.getString("userRole"));
         user.setAccountStatus(rs.getString("accountStatus"));
+        user.setNationality(rs.getString("nationality"));
         user.setCreatedAt(rs.getTimestamp("createdAt"));
         user.setUpdatedAt(rs.getTimestamp("updatedAt"));
         return user;
@@ -79,6 +83,7 @@ public class UserDao {
             ps.setString(5, user.getUserAddress());
             ps.setString(6, user.getUserRole() != null ? user.getUserRole() : "MEMBER");
             ps.setString(7, user.getAccountStatus() != null ? user.getAccountStatus() : "ACTIVE");
+            ps.setString(8, user.getNationality());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) return -1;
@@ -166,15 +171,26 @@ public class UserDao {
         }
     }
 
-    public boolean updateProfile(int userId, String fullName,
-                                 String phoneNumber, String userAddress) throws SQLException {
+    public boolean updateProfile(int userId, String fullName, String userEmail,
+                                 String phoneNumber, String nationality) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_PROFILE)) {
 
             ps.setString(1, fullName);
-            ps.setString(2, phoneNumber);
-            ps.setString(3, userAddress);
-            ps.setInt(4, userId);
+            ps.setString(2, userEmail);
+            ps.setString(3, phoneNumber);
+            ps.setString(4, nationality);
+            ps.setInt(5, userId);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public boolean updatePassword(int userId, String hashedPassword) throws SQLException {
+        try (Connection conn = DBConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_PASSWORD)) {
+
+            ps.setString(1, hashedPassword);
+            ps.setInt(2, userId);
             return ps.executeUpdate() > 0;
         }
     }

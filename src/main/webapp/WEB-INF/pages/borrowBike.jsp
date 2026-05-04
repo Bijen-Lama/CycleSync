@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions"  %>
 <% request.setAttribute("activePage", "searchBicycles"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +76,16 @@
                             <div class="detail-row">
                                 <span class="label"><i data-lucide="wallet"></i> Hourly Rate</span>
                                 <span class="value price">
-                                    NPR <fmt:formatNumber value="${selectedBike.hourlyRate}" pattern="#,##0.00"/> / hour
+                                    <c:choose>
+                                        <c:when test="${sessionScope.loggedInUser.nationality == 'Foreign'}">
+                                            <c:set var="usdRate" value="${selectedBike.hourlyRate / 135.0}" />
+                                            USD $<fmt:formatNumber value="${usdRate}" pattern="#,##0.00"/> / hour
+                                            <div style="font-size: 0.75rem; color: var(--clr-text-light); text-align: right;">(NPR <fmt:formatNumber value="${selectedBike.hourlyRate}" pattern="#,##0.00"/>)</div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            NPR <fmt:formatNumber value="${selectedBike.hourlyRate}" pattern="#,##0.00"/> / hour
+                                        </c:otherwise>
+                                    </c:choose>
                                 </span>
                             </div>
 
@@ -129,5 +138,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

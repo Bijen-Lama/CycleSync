@@ -18,12 +18,13 @@ public class ManageBicycleServlet extends BaseServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!isAdmin(request, response)) return;
+        if (!isAdmin(request, response))
+            return;
 
         try {
             request.setAttribute("bicycleList", bicycleService.getAllBicycles());
             request.getRequestDispatcher("/WEB-INF/pages/manageBicycles.jsp")
-                   .forward(request, response);
+                    .forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Error loading bicycle list.", e);
         }
@@ -33,7 +34,8 @@ public class ManageBicycleServlet extends BaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (!isAdmin(request, response)) return;
+        if (!isAdmin(request, response))
+            return;
 
         String action = request.getParameter("action");
 
@@ -41,40 +43,44 @@ public class ManageBicycleServlet extends BaseServlet {
             switch (action == null ? "" : action) {
                 case "add":
                     bicycleService.addBicycle(
-                        request.getParameter("bicycleName"),
-                        request.getParameter("bicycleType"),
-                        request.getParameter("locationCode"),
-                        request.getParameter("hourlyRate"),
-                        request.getParameter("description")
-                    );
+                            request.getParameter("bicycleName"),
+                            request.getParameter("bicycleType"),
+                            request.getParameter("locationCode"),
+                            request.getParameter("hourlyRate"),
+                            request.getParameter("description"));
                     request.getSession().setAttribute("successMessage", "Bicycle added successfully.");
                     break;
 
                 case "update":
                     bicycleService.updateBicycle(
-                        Integer.parseInt(request.getParameter("bicycleId")),
-                        request.getParameter("bicycleName"),
-                        request.getParameter("bicycleType"),
-                        request.getParameter("bicycleStatus"),
-                        request.getParameter("locationCode"),
-                        request.getParameter("hourlyRate"),
-                        request.getParameter("description")
-                    );
+                            Integer.parseInt(request.getParameter("bicycleId")),
+                            request.getParameter("bicycleName"),
+                            request.getParameter("bicycleType"),
+                            request.getParameter("bicycleStatus"),
+                            request.getParameter("locationCode"),
+                            request.getParameter("hourlyRate"),
+                            request.getParameter("description"));
                     request.getSession().setAttribute("successMessage", "Bicycle updated successfully.");
                     break;
 
                 case "delete":
-                    bicycleService.deleteBicycle(
-                        Integer.parseInt(request.getParameter("bicycleId"))
-                    );
-                    request.getSession().setAttribute("successMessage", "Bicycle removed.");
+                    String delIdStr = request.getParameter("bicycleId");
+                    if (delIdStr != null && !delIdStr.isEmpty()) {
+                        try {
+                            bicycleService.deleteBicycle(Integer.parseInt(delIdStr));
+                            request.getSession().setAttribute("successMessage", "Bicycle removed.");
+                        } catch (NumberFormatException e) {
+                            request.getSession().setAttribute("errorMessage", "Invalid Bicycle ID format.");
+                        }
+                    } else {
+                        request.getSession().setAttribute("errorMessage", "Bicycle ID is missing.");
+                    }
                     break;
 
                 case "updateStatus":
                     bicycleService.updateStatus(
-                        Integer.parseInt(request.getParameter("bicycleId")),
-                        request.getParameter("bicycleStatus")
-                    );
+                            Integer.parseInt(request.getParameter("bicycleId")),
+                            request.getParameter("bicycleStatus"));
                     request.getSession().setAttribute("successMessage", "Status updated.");
                     break;
 
@@ -88,6 +94,5 @@ public class ManageBicycleServlet extends BaseServlet {
         }
         response.sendRedirect(response.encodeRedirectURL("manageBicycles"));
     }
-
 
 }

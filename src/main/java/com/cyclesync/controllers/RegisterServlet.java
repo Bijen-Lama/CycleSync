@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
         String userPassword = request.getParameter("userPassword");
         String confirmPass  = request.getParameter("confirmPassword");
         String phoneNumber  = request.getParameter("phoneNumber");
-        String userAddress  = request.getParameter("userAddress");
+        String nationality  = request.getParameter("nationality");
 
         // Validation
         if (fullName == null || fullName.trim().isEmpty() ||
@@ -50,10 +50,24 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
             return;
         }
+        
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        if (!userEmail.matches(emailRegex)) {
+            request.setAttribute("errorMessage", "Invalid email format.");
+            request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
+            return;
+        }
+
+        String passRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$";
+        if (!userPassword.matches(passRegex)) {
+            request.setAttribute("errorMessage", "Password must contain at least one uppercase, lowercase, number, and special character.");
+            request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
+            return;
+        }
 
         try {
             userService.registerMember(fullName.trim(), userEmail.trim(),
-                                       userPassword, phoneNumber, userAddress);
+                                       userPassword, phoneNumber, null, nationality);
             response.sendRedirect(response.encodeRedirectURL("login?registered=true"));
 
         } catch (IllegalArgumentException e) {

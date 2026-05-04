@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <% request.setAttribute("activePage", "memberDashboard"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +62,9 @@
                 </div>
             </c:if>
 
+            <!-- Live Map -->
+            <%@ include file="_map.jsp" %>
+
             <!-- Dashboard Grid -->
             <div class="dash-grid">
 
@@ -101,14 +104,11 @@
                                             <i data-lucide="alert-triangle"></i> Late returns are fined NPR 350.00/hour after the due date.
                                         </div>
 
-                                        <form action="${pageContext.request.contextPath}/returnBike"
-                                              method="post"
-                                              onsubmit="return confirm('Confirm return of this bicycle?');">
-                                            <input type="hidden" name="recordId" value="${activeBorrow.recordId}">
-                                            <button type="submit" class="abp-return-btn">
-                                                <i data-lucide="check-circle-2"></i> Return This Bicycle
-                                            </button>
-                                        </form>
+                                        <a href="${pageContext.request.contextPath}/returnBike?recordId=${activeBorrow.recordId}"
+                                           class="abp-return-btn"
+                                           style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; justify-content:center;">
+                                            <i data-lucide="check-circle-2"></i> Return &amp; Pay
+                                        </a>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -247,5 +247,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

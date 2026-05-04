@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
 <% request.setAttribute("activePage", "fines"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,7 +163,7 @@
                                                         </form>
                                                         <form action="${pageContext.request.contextPath}/fines"
                                                               method="post" style="display:inline;"
-                                                              onsubmit="return confirm('Waive this fine?');">
+                                                              data-confirm="Waive this fine?">
                                                             <input type="hidden" name="fineId" value="${fine.fineId}">
                                                             <input type="hidden" name="action" value="waive">
                                                             <input type="hidden" name="adminNotes" value="Waived by admin.">
@@ -196,5 +196,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

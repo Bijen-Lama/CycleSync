@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,24 +148,38 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label" for="userAddress">Address</label>
-                <div class="input-wrap">
-                    <span class="input-icon"><i data-lucide="map-pin"></i></span>
-                    <input type="text"
-                           id="userAddress"
-                           name="userAddress"
-                           class="form-control"
-                           placeholder="e.g. Thamel, Kathmandu"
-                           value="${not empty param.userAddress ? param.userAddress : ''}"
-                           autocomplete="street-address">
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label class="form-label" for="nationality">Nationality <span class="required">*</span></label>
+                    <div class="input-wrap">
+                        <span class="input-icon"><i data-lucide="globe"></i></span>
+                        <input type="text" id="nationality" name="nationality" class="form-control" 
+                               placeholder="Select or type nationality" list="nationalityList" 
+                               style="padding-left: 38px;" required>
+                        <datalist id="nationalityList">
+                            <option value="" disabled selected>Select Nationality</option>
+                            <option value="Nepalese">Nepal</option>
+                            <option value="American">United States</option>
+                            <option value="British">United Kingdom</option>
+                            <option value="Indian">India</option>
+                            <option value="Chinese">China</option>
+                            <option value="Australian">Australia</option>
+                            <option value="Canadian">Canada</option>
+                            <option value="French">France</option>
+                            <option value="German">Germany</option>
+                            <option value="Japanese">Japan</option>
+                            <option value="Korean">South Korea</option>
+                            <option value="Other">Other</option>
+                        </datalist>
+
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-check">
                     <input type="checkbox" name="terms" required>
-                    I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a>
+                    I agree to the <a href="${pageContext.request.contextPath}/terms">Terms &amp; Conditions</a> and <a href="${pageContext.request.contextPath}/privacy">Privacy Policy</a>
                 </label>
             </div>
 
@@ -191,5 +205,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

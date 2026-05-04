@@ -11,6 +11,7 @@ public class UserModel {
 	private String userAddress;
 	private String userRole;
 	private String accountStatus;
+	private String nationality;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
 	
@@ -104,6 +105,9 @@ public class UserModel {
 		this.accountStatus = accountStatus;
 	}
 
+	public String getNationality() { return nationality; }
+	public void setNationality(String nationality) { this.nationality = nationality; }
+	
 	public Timestamp getCreatedAt() {
 		return createdAt;
 	}

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <% request.setAttribute("activePage", "manageBicycles"); %>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,7 +209,7 @@
 
                                                 <form action="${pageContext.request.contextPath}/manageBicycles"
                                                       method="post"
-                                                      onsubmit="return confirm('Delete this bicycle permanently?');"
+                                                      data-confirm="Delete this bicycle permanently?"
                                                       style="display:inline;">
                                                     <input type="hidden" name="action" value="delete">
                                                     <input type="hidden" name="bicycleId" value="${bike.bicycleId}">
@@ -265,5 +265,6 @@
         }
     });
 </script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
 </body>
 </html>

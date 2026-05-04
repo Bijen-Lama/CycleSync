@@ -604,3 +604,52 @@ p:last-child { margin-bottom: 0; }
     border-color: var(--clr-danger);
 }
 
+
+/* ─── MODAL SYSTEM ─── */
+.cs-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+}
+
+.cs-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cs-modal {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.95) translateY(10px);
+    transition: all 0.25s ease;
+}
+
+.cs-modal-overlay.visible .cs-modal {
+    transform: scale(1) translateY(0);
+}
+
+.cs-modal-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+}
+
+.cs-modal-icon.danger { background: var(--clr-danger-pale); color: var(--clr-danger); }
+.cs-modal-icon.info { background: var(--clr-info-pale); color: var(--clr-info); }
+.cs-modal-icon.success { background: var(--clr-success-pale); color: var(--clr-success); }
+
+.cs-modal-content h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.cs-modal-content p { font-size: 0.9rem; color: var(--clr-text-secondary); margin-bottom: 0; }
