@@ -16,10 +16,10 @@ import java.sql.SQLException;
  */
 public class DBConfig {
 
-	private static final String DB_HOST     = getEnv("DB_HOST",     "127.0.0.1");
-	private static final String DB_PORT     = getEnv("DB_PORT",     "3306");
-	private static final String DB_NAME     = getEnv("DB_NAME",     "cyclesync_db");
-	private static final String USER        = getEnv("DB_USER",     "root");
+	private static final String DB_HOST     = getEnv("DB_HOST", "127.0.0.1");
+	private static final String DB_PORT     = getEnv("DB_PORT", "3306");
+	private static final String DB_NAME     = getEnv("DB_NAME", "cyclesync_db");
+	private static final String USER        = getEnv("DB_USER", "root");
 	private static final String PASSWORD    = getEnv("DB_PASSWORD", "");
 	private static final String DB_DRIVER   = "com.mysql.cj.jdbc.Driver";
 

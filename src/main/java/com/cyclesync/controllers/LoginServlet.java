@@ -24,6 +24,18 @@ public class LoginServlet extends HttpServlet {
             redirectByRole(user, response);
             return;
         }
+
+        // Check for "Remember Me" cookie
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("user_email".equals(cookie.getName())) {
+                    request.setAttribute("rememberMeEmail", cookie.getValue());
+                    break;
+                }
+            }
+        }
+
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
     }
 
@@ -33,6 +45,7 @@ public class LoginServlet extends HttpServlet {
 
         String userEmail    = request.getParameter("userEmail");
         String userPassword = request.getParameter("userPassword");
+        String rememberMe   = request.getParameter("rememberMe");
 
         if (userEmail == null || userEmail.trim().isEmpty() ||
             userPassword == null || userPassword.trim().isEmpty()) {
@@ -106,6 +119,16 @@ public class LoginServlet extends HttpServlet {
             checkSession.setAttribute("userId",       user.getUserId());
             checkSession.setAttribute("userRole",     user.getUserRole());
             checkSession.setMaxInactiveInterval(60 * 30);  // 30 minutes
+
+            // Handle "Remember Me" cookie
+            Cookie userCookie = new Cookie("user_email", userEmail);
+            if (rememberMe != null) {
+                userCookie.setMaxAge(60 * 60 * 24 * 30); // 30 days
+            } else {
+                userCookie.setMaxAge(0); // Delete cookie
+            }
+            userCookie.setPath(request.getContextPath());
+            response.addCookie(userCookie);
 
             redirectByRole(user, response);
 

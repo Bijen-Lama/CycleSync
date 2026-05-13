@@ -10,20 +10,21 @@ import java.math.BigDecimal;
 
 public class TransactionDao {
 
-    private static final String SQL_SELECT_ENRICHED =
-        "SELECT t.*, u.fullName AS memberName, u.userEmail AS memberEmail, u.nationality AS memberNationality, " +
-        "       b.bicycleName, br.borrowDate, br.returnDate " +
-        "FROM transactions t " +
-        "JOIN users u ON t.userId = u.userId " +
-        "JOIN borrow_records br ON t.recordId = br.recordId " +
-        "JOIN bicycles b ON br.bicycleId = b.bicycleId ";
+    private static final String SQL_SELECT_ENRICHED = "SELECT t.*, u.fullName AS memberName, u.userEmail AS memberEmail, u.nationality AS memberNationality, "
+            +
+            "       b.bicycleName, br.borrowDate, br.returnDate " +
+            "FROM transactions t " +
+            "JOIN users u ON t.userId = u.userId " +
+            "JOIN borrow_records br ON t.recordId = br.recordId " +
+            "JOIN bicycles b ON br.bicycleId = b.bicycleId ";
 
     public List<TransactionModel> findAll() throws SQLException {
         List<TransactionModel> list = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL_SELECT_ENRICHED + "ORDER BY t.createdAt DESC");
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) list.add(mapRow(rs));
+                PreparedStatement ps = conn.prepareStatement(SQL_SELECT_ENRICHED + "ORDER BY t.createdAt DESC");
+                ResultSet rs = ps.executeQuery()) {
+            while (rs.next())
+                list.add(mapRow(rs));
         }
         return list;
     }
@@ -31,10 +32,12 @@ public class TransactionDao {
     public List<TransactionModel> findByUserId(int userId) throws SQLException {
         List<TransactionModel> list = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(SQL_SELECT_ENRICHED + "WHERE t.userId = ? ORDER BY t.createdAt DESC")) {
+                PreparedStatement ps = conn
+                        .prepareStatement(SQL_SELECT_ENRICHED + "WHERE t.userId = ? ORDER BY t.createdAt DESC")) {
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) list.add(mapRow(rs));
+                while (rs.next())
+                    list.add(mapRow(rs));
             }
         }
         return list;
@@ -42,10 +45,11 @@ public class TransactionDao {
 
     public BigDecimal getTotalRevenue() throws SQLException {
         try (Connection conn = DBConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(
-                 "SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE status = 'COMPLETED' AND currency = 'NPR'");
-             ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) return rs.getBigDecimal(1);
+                PreparedStatement ps = conn.prepareStatement(
+                        "SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE status = 'COMPLETED' AND currency = 'NPR'");
+                ResultSet rs = ps.executeQuery()) {
+            if (rs.next())
+                return rs.getBigDecimal(1);
         }
         return BigDecimal.ZERO;
     }

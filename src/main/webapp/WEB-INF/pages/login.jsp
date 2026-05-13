@@ -92,7 +92,7 @@
                            name="userEmail"
                            class="form-control"
                            placeholder="you@university.edu"
-                           value="${not empty param.userEmail ? param.userEmail : ''}"
+                           value="${not empty rememberMeEmail ? rememberMeEmail : (not empty param.userEmail ? param.userEmail : '')}"
                            required
                            autocomplete="email">
                 </div>
@@ -114,8 +114,9 @@
 
             <div class="auth-options">
                 <label class="form-check">
-                    <input type="checkbox" name="rememberMe"> Remember me
+                    <input type="checkbox" name="rememberMe" id="rememberMe" ${not empty rememberMeEmail ? 'checked' : ''}> Remember me
                 </label>
+                <a href="${pageContext.request.contextPath}/forgot-password" class="forgot-password-link">Forgot Password?</a>
             </div>
 
             <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
