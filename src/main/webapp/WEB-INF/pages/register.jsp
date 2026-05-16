@@ -135,7 +135,7 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="phoneNumber">Phone Number</label>
+                <label class="form-label" for="phoneNumber">Phone Number<span class="required">*</span></label>
                 <div class="input-wrap">
                     <span class="input-icon"><i data-lucide="smartphone"></i></span>
                     <input type="tel"
@@ -143,6 +143,7 @@
                            name="phoneNumber"
                            class="form-control"
                            placeholder="Your contact number"
+                           required
                            value="${not empty param.phoneNumber ? param.phoneNumber : ''}"
                            autocomplete="tel">
                 </div>

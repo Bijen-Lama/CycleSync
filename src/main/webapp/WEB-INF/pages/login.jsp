@@ -61,7 +61,7 @@
     <div class="auth-panel-right">
 
         <div class="auth-form-header">
-            <h2>Welcome back 👋</h2>
+            <h2>Welcome back</h2>
             <p>Sign in to your CycleSync account to continue.</p>
         </div>
 
