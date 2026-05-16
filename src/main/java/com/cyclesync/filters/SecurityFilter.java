@@ -25,37 +25,17 @@ public class SecurityFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        HttpSession session = request.getSession(false);
-
-        String path = request.getServletPath();
-        String uri = request.getRequestURI();
 
         // 1. Prevent Browser Caching for ALL responses
+        // This is the core fix for the "Back Button" issue.
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 
-        // 2. Session Validation
-        boolean isLoggedIn = (session != null && session.getAttribute("loggedInUser") != null);
-        
-        // Define public paths
-        boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/") || uri.contains("/lib/");
-        boolean isPublicServlet = path.equals("/login") || 
-                                  path.equals("/register") || 
-                                  path.equals("/forgot-password") || 
-                                  path.equals("/reset-password") ||
-                                  path.equals("/about") ||
-                                  path.equals("/contact") ||
-                                  path.equals("/terms") ||
-                                  path.equals("/privacy") ||
-                                  path.equals("/index.jsp") ||
-                                  path.equals(""); // Root path
-
-        if (!isLoggedIn && !isPublicServlet && !isStaticResource) {
-            response.sendRedirect(request.getContextPath() + "/login");
-        } else {
-            chain.doFilter(request, response);
-        }
+        // 2. Continue the request chain
+        // We rely on individual Servlets (via BaseServlet) to handle session redirection.
+        // This prevents 404/redirection loops in certain server configurations.
+        chain.doFilter(request, response);
     }
 
     @Override
