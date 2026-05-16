@@ -27,35 +27,33 @@ public class SecurityFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
 
-        String path = request.getRequestURI().substring(request.getContextPath().length());
+        String path = request.getServletPath();
+        String uri = request.getRequestURI();
 
         // 1. Prevent Browser Caching for ALL responses
-        // This ensures the back button doesn't show sensitive data after logout
-        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
-        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
-        response.setDateHeader("Expires", 0); // Proxies
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
 
-        // 2. Session Validation for protected routes
-        // Allow access to login, register, forgot-password, and static assets
-        boolean isStaticResource = path.startsWith("/css/") || path.startsWith("/js/") || path.startsWith("/images/");
-        boolean isPublicPage = path.equals("/login") || 
-                               path.equals("/register") || 
-                               path.equals("/forgot-password") || 
-                               path.equals("/reset-password") ||
-                               path.equals("/about") ||
-                               path.equals("/contact") ||
-                               path.equals("/terms") ||
-                               path.equals("/privacy") ||
-                               path.equals("/") ||
-                               path.equals("/index.jsp");
-
+        // 2. Session Validation
         boolean isLoggedIn = (session != null && session.getAttribute("loggedInUser") != null);
+        
+        // Define public paths
+        boolean isStaticResource = uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/") || uri.contains("/lib/");
+        boolean isPublicServlet = path.equals("/login") || 
+                                  path.equals("/register") || 
+                                  path.equals("/forgot-password") || 
+                                  path.equals("/reset-password") ||
+                                  path.equals("/about") ||
+                                  path.equals("/contact") ||
+                                  path.equals("/terms") ||
+                                  path.equals("/privacy") ||
+                                  path.equals("/index.jsp") ||
+                                  path.equals(""); // Root path
 
-        if (!isLoggedIn && !isPublicPage && !isStaticResource) {
-            // User is not logged in and trying to access a protected page
+        if (!isLoggedIn && !isPublicServlet && !isStaticResource) {
             response.sendRedirect(request.getContextPath() + "/login");
         } else {
-            // Continue the request
             chain.doFilter(request, response);
         }
     }
