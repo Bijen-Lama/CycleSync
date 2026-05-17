@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: HashGenServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import org.mindrot.jbcrypt.BCrypt;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -7,9 +16,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/hashgen")
+
+/**
+ * Class: HashGenServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class HashGenServlet extends HttpServlet {
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 

@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: ResetPasswordServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.dao.UserDao;
 import com.cyclesync.model.UserModel;
 import org.mindrot.jbcrypt.BCrypt;
@@ -11,11 +20,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/reset-password")
+
+/**
+ * Class: ResetPasswordServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class ResetPasswordServlet extends HttpServlet {
 
     private final UserDao userDao = new UserDao();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -29,6 +47,8 @@ public class ResetPasswordServlet extends HttpServlet {
     }
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

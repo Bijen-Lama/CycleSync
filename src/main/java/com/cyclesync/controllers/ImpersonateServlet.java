@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: ImpersonateServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.UserService;
 import com.cyclesync.config.DBConfig;
@@ -15,10 +24,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 @WebServlet("/impersonate")
+
+/**
+ * Class: ImpersonateServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class ImpersonateServlet extends BaseServlet {
     private final UserService userService = new UserService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null) {

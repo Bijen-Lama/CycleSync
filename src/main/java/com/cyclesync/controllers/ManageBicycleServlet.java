@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: ManageBicycleServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.BicycleService;
 
@@ -10,11 +19,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/manageBicycles")
+
+/**
+ * Class: ManageBicycleServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class ManageBicycleServlet extends BaseServlet {
 
     private final BicycleService bicycleService = new BicycleService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -31,6 +49,8 @@ public class ManageBicycleServlet extends BaseServlet {
     }
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

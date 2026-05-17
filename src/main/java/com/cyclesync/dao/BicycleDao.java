@@ -1,5 +1,14 @@
 package com.cyclesync.dao;
 
+
+/*
+ * File name: BicycleDao.java
+ * Description: CycleSync Data Access Object
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import com.cyclesync.model.BicycleModel;
 
@@ -10,6 +19,13 @@ import java.util.List;
 
 /**
  * BicycleDao - All PreparedStatement-based DB operations for the 'bicycles' table.
+ */
+
+/**
+ * Class: BicycleDao
+ * Role: Manages direct database interactions and coordinates SQL data persistent states
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class BicycleDao {
 
@@ -48,6 +64,8 @@ public class BicycleDao {
     // ----------------------------------------------------------------
     // Mapper
     // ----------------------------------------------------------------
+
+    // Executes the SQL query to perform CRUD actions on the database
     private BicycleModel mapRow(ResultSet rs) throws SQLException {
         BicycleModel bike = new BicycleModel();
         bike.setBicycleId(rs.getInt("bicycleId"));
@@ -68,6 +86,9 @@ public class BicycleDao {
     // ----------------------------------------------------------------
     // CREATE
     // ----------------------------------------------------------------
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public int insertBicycle(BicycleModel bike) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -94,6 +115,9 @@ public class BicycleDao {
     // READ
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public BicycleModel findById(int bicycleId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_BY_ID)) {
@@ -106,6 +130,9 @@ public class BicycleDao {
         return null;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<BicycleModel> findAll() throws SQLException {
         List<BicycleModel> bikeList = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -117,6 +144,9 @@ public class BicycleDao {
         return bikeList;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<BicycleModel> findAvailable() throws SQLException {
         List<BicycleModel> bikeList = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -127,6 +157,9 @@ public class BicycleDao {
         }
         return bikeList;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<BicycleModel> findByType(String bicycleType) throws SQLException {
         List<BicycleModel> bikeList = new ArrayList<>();
@@ -140,6 +173,9 @@ public class BicycleDao {
         }
         return bikeList;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<BicycleModel> findByStatus(String bicycleStatus) throws SQLException {
         List<BicycleModel> bikeList = new ArrayList<>();
@@ -158,6 +194,9 @@ public class BicycleDao {
     // UPDATE
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public boolean updateStatus(int bicycleId, String bicycleStatus) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_STATUS)) {
@@ -167,6 +206,9 @@ public class BicycleDao {
             return ps.executeUpdate() > 0;
         }
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean updateBicycle(BicycleModel bike) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -186,6 +228,9 @@ public class BicycleDao {
     // ----------------------------------------------------------------
     // DELETE
     // ----------------------------------------------------------------
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean deleteBicycle(int bicycleId) throws SQLException {
         try (Connection conn = DBConfig.getConnection()) {
@@ -224,6 +269,8 @@ public class BicycleDao {
     /**
      * Returns a count array: [0]=available, [1]=borrowed, [2]=maintenance
      */
+
+    // Executes the SQL query to perform CRUD actions on the database
     public int[] getStatusCounts() throws SQLException {
         int[] counts = {0, 0, 0};
         try (Connection conn = DBConfig.getConnection();

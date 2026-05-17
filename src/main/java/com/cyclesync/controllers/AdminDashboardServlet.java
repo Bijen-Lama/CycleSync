@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: AdminDashboardServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.BicycleService;
 import com.cyclesync.service.BorrowService;
@@ -13,6 +22,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/adminDashboard")
+
+/**
+ * Class: AdminDashboardServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class AdminDashboardServlet extends BaseServlet {
 
     private final UserService    userService    = new UserService();
@@ -21,6 +37,8 @@ public class AdminDashboardServlet extends BaseServlet {
     private final FineService    fineService    = new FineService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

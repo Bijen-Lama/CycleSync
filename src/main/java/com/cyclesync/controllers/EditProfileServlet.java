@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: EditProfileServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.UserService;
 
@@ -13,11 +22,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/editProfile")
+
+/**
+ * Class: EditProfileServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class EditProfileServlet extends BaseServlet {
 
     private final UserService userService = new UserService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = getLoggedInUser(request, response);
         if (user == null) return;
@@ -27,6 +45,8 @@ public class EditProfileServlet extends BaseServlet {
     }
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = getLoggedInUser(request, response);
         if (user == null) return;

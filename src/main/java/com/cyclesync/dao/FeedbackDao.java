@@ -1,12 +1,31 @@
 package com.cyclesync.dao;
 
+
+/*
+ * File name: FeedbackDao.java
+ * Description: CycleSync Data Access Object
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import com.cyclesync.model.FeedbackModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Class: FeedbackDao
+ * Role: Manages direct database interactions and coordinates SQL data persistent states
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class FeedbackDao {
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean insertFeedback(FeedbackModel feedback) throws SQLException {
         String sql = "INSERT INTO feedback (userId, type, subject, message) VALUES (?, ?, ?, ?)";
@@ -19,6 +38,9 @@ public class FeedbackDao {
             return ps.executeUpdate() > 0;
         }
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<FeedbackModel> findAll() throws SQLException {
         List<FeedbackModel> list = new ArrayList<>();
@@ -43,6 +65,9 @@ public class FeedbackDao {
         }
         return list;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean updateStatus(int feedbackId, String status) throws SQLException {
         String sql = "UPDATE feedback SET status = ? WHERE feedbackId = ?";

@@ -1,5 +1,14 @@
 package com.cyclesync.config;
 
+
+/*
+ * File name: DBConfig.java
+ * Description: CycleSync Configuration Helper
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,6 +22,13 @@ import java.sql.SQLException;
  *   DB_NAME     (default: cyclesync_db)
  *   DB_USER     (default: root)
  *   DB_PASSWORD (default: "")
+ */
+
+/**
+ * Class: DBConfig
+ * Role: Establishes system setup parameters and system configurations
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class DBConfig {
 

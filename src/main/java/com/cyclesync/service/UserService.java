@@ -1,5 +1,14 @@
 package com.cyclesync.service;
 
+
+/*
+ * File name: UserService.java
+ * Description: CycleSync Service Layer Component
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.dao.UserDao;
 import com.cyclesync.model.UserModel;
 import org.mindrot.jbcrypt.BCrypt;
@@ -15,6 +24,13 @@ import java.util.List;
  * If you prefer not to use BCrypt yet, swap the two marked methods for
  * plain-text comparison — but never do this in production.
  */
+
+/**
+ * Class: UserService
+ * Role: Coordinates business logic and orchestrates database transactions
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class UserService {
 
     private final UserDao userDao = new UserDao();
@@ -27,6 +43,8 @@ public class UserService {
      * Registers a new member. Returns the new userId, or -1 on failure.
      * Throws IllegalArgumentException for duplicate email.
      */
+
+    // Applies business rules and communicates with the data access layer
     public int registerMember(String fullName, String userEmail,
                               String userPassword, String phoneNumber,
                               String userAddress, String nationality) throws SQLException {
@@ -47,6 +65,8 @@ public class UserService {
     /**
      * Validates login credentials. Returns the UserModel on success, null on failure.
      */
+
+    // Applies business rules and communicates with the data access layer
     public UserModel loginUser(String userEmail, String userPassword) throws SQLException {
         UserModel user = userDao.findByEmail(userEmail);
         if (user == null) return null;
@@ -63,25 +83,43 @@ public class UserService {
     // Member Management (Admin use)
     // ----------------------------------------------------------------
 
+
+    // Applies business rules and communicates with the data access layer
+
     public List<UserModel> getAllMembers() throws SQLException {
         return userDao.findAllMembers();
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public List<UserModel> getAllUsers() throws SQLException {
         return userDao.findAllUsers();
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public UserModel getMemberById(int userId) throws SQLException {
         return userDao.findById(userId);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean suspendMember(int userId) throws SQLException {
         return userDao.updateAccountStatus(userId, "SUSPENDED");
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public boolean activateMember(int userId) throws SQLException {
         return userDao.updateAccountStatus(userId, "ACTIVE");
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean deleteMember(int userId) throws SQLException {
         return userDao.deleteUser(userId);
@@ -90,6 +128,9 @@ public class UserService {
     // ----------------------------------------------------------------
     // Profile Management (Member self-service)
     // ----------------------------------------------------------------
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean updateProfile(int userId, String fullName, String userEmail,
                                  String phoneNumber, String nationality) throws SQLException {
@@ -101,6 +142,9 @@ public class UserService {
         }
         return userDao.updateProfile(userId, fullName.trim(), userEmail.trim(), phoneNumber, nationality);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean updatePassword(int userId, String newPassword) throws SQLException {
         if (newPassword == null || newPassword.trim().isEmpty()) return false;

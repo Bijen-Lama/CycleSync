@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: BicycleLocationServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.BicycleModel;
 import com.cyclesync.service.BicycleService;
 import jakarta.servlet.ServletException;
@@ -14,11 +23,20 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/api/bicycle-locations")
+
+/**
+ * Class: BicycleLocationServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class BicycleLocationServlet extends HttpServlet {
     
     private final BicycleService bicycleService = new BicycleService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

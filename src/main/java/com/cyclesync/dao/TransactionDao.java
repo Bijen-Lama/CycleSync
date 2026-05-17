@@ -1,5 +1,14 @@
 package com.cyclesync.dao;
 
+
+/*
+ * File name: TransactionDao.java
+ * Description: CycleSync Data Access Object
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import com.cyclesync.model.TransactionModel;
 
@@ -8,6 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 
+
+/**
+ * Class: TransactionDao
+ * Role: Manages direct database interactions and coordinates SQL data persistent states
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class TransactionDao {
 
     private static final String SQL_SELECT_ENRICHED = "SELECT t.*, u.fullName AS memberName, u.userEmail AS memberEmail, u.nationality AS memberNationality, "
@@ -17,6 +33,9 @@ public class TransactionDao {
             "JOIN users u ON t.userId = u.userId " +
             "JOIN borrow_records br ON t.recordId = br.recordId " +
             "JOIN bicycles b ON br.bicycleId = b.bicycleId ";
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<TransactionModel> findAll() throws SQLException {
         List<TransactionModel> list = new ArrayList<>();
@@ -28,6 +47,9 @@ public class TransactionDao {
         }
         return list;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<TransactionModel> findByUserId(int userId) throws SQLException {
         List<TransactionModel> list = new ArrayList<>();
@@ -43,6 +65,9 @@ public class TransactionDao {
         return list;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public BigDecimal getTotalRevenue() throws SQLException {
         try (Connection conn = DBConfig.getConnection();
                 PreparedStatement ps = conn.prepareStatement(
@@ -53,6 +78,9 @@ public class TransactionDao {
         }
         return BigDecimal.ZERO;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     private TransactionModel mapRow(ResultSet rs) throws SQLException {
         TransactionModel t = new TransactionModel();

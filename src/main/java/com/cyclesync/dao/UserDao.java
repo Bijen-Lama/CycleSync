@@ -1,5 +1,14 @@
 package com.cyclesync.dao;
 
+
+/*
+ * File name: UserDao.java
+ * Description: CycleSync Data Access Object
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import com.cyclesync.model.UserModel;
 
@@ -9,6 +18,13 @@ import java.util.List;
 
 /**
  * UserDao - All PreparedStatement-based DB operations for the 'users' table.
+ */
+
+/**
+ * Class: UserDao
+ * Role: Manages direct database interactions and coordinates SQL data persistent states
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class UserDao {
 
@@ -49,6 +65,8 @@ public class UserDao {
     // ----------------------------------------------------------------
     // Mapper — converts a ResultSet row into a UserModel object
     // ----------------------------------------------------------------
+
+    // Executes the SQL query to perform CRUD actions on the database
     private UserModel mapRow(ResultSet rs) throws SQLException {
         UserModel user = new UserModel();
         user.setUserId(rs.getInt("userId"));
@@ -72,6 +90,8 @@ public class UserDao {
     /**
      * Inserts a new user row. Returns the generated userId, or -1 on failure.
      */
+
+    // Executes the SQL query to perform CRUD actions on the database
     public int insertUser(UserModel user) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
@@ -99,6 +119,9 @@ public class UserDao {
     // READ
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public UserModel findByEmail(String userEmail) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_BY_EMAIL)) {
@@ -110,6 +133,9 @@ public class UserDao {
         }
         return null;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public UserModel findById(int userId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -123,6 +149,9 @@ public class UserDao {
         return null;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<UserModel> findAllUsers() throws SQLException {
         List<UserModel> userList = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -134,6 +163,9 @@ public class UserDao {
         return userList;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<UserModel> findAllMembers() throws SQLException {
         List<UserModel> memberList = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -144,6 +176,9 @@ public class UserDao {
         }
         return memberList;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean emailExists(String userEmail) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -161,6 +196,9 @@ public class UserDao {
     // UPDATE
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public boolean updateAccountStatus(int userId, String accountStatus) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_STATUS)) {
@@ -170,6 +208,9 @@ public class UserDao {
             return ps.executeUpdate() > 0;
         }
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean updateProfile(int userId, String fullName, String userEmail,
                                  String phoneNumber, String nationality) throws SQLException {
@@ -185,6 +226,9 @@ public class UserDao {
         }
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public boolean updatePassword(int userId, String hashedPassword) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_PASSWORD)) {
@@ -198,6 +242,9 @@ public class UserDao {
     // ----------------------------------------------------------------
     // DELETE
     // ----------------------------------------------------------------
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean deleteUser(int userId) throws SQLException {
         try (Connection conn = DBConfig.getConnection()) {

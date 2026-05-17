@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: LoginServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.dao.UserDao;
 import org.mindrot.jbcrypt.BCrypt;
@@ -11,13 +20,28 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/login")
+
+/**
+ * Class: LoginServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class LoginServlet extends HttpServlet {
 
     private final UserDao userDao = new UserDao();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Prevent caching of login page to handle back button after logout
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("loggedInUser") != null) {
             UserModel user = (UserModel) session.getAttribute("loggedInUser");
@@ -40,6 +64,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -137,6 +163,9 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+
+    // Processes the request and determines the next navigation step
+
     private void incrementFailedAttempts(HttpSession session, int currentAttempts) {
         currentAttempts++;
         if (currentAttempts >= 3) {
@@ -144,6 +173,9 @@ public class LoginServlet extends HttpServlet {
         }
         session.setAttribute("failedAttempts", currentAttempts);
     }
+
+
+    // Processes the request and determines the next navigation step
 
     private void redirectByRole(UserModel user, HttpServletResponse response) throws IOException {
         if (user.isAdmin()) {

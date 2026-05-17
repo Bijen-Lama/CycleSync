@@ -1,5 +1,14 @@
 package com.cyclesync.listeners;
 
+
+/*
+ * File name: BicycleSimulationListener.java
+ * Description: CycleSync Core Component
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -13,11 +22,20 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @WebListener
+
+/**
+ * Class: BicycleSimulationListener
+ * Role: Provides core system functionality
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class BicycleSimulationListener implements ServletContextListener {
 
     private ScheduledExecutorService scheduler;
 
     @Override
+
+    // Performs operations for this component
     public void contextInitialized(ServletContextEvent sce) {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         
@@ -40,6 +58,8 @@ public class BicycleSimulationListener implements ServletContextListener {
     }
 
     @Override
+
+    // Performs operations for this component
     public void contextDestroyed(ServletContextEvent sce) {
         if (scheduler != null) {
             scheduler.shutdownNow();

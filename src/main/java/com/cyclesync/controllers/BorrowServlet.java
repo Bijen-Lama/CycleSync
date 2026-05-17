@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: BorrowServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.BicycleService;
 import com.cyclesync.service.BorrowService;
@@ -11,6 +20,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/borrowBike")
+
+/**
+ * Class: BorrowServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class BorrowServlet extends BaseServlet {
 
     private final BorrowService  borrowService  = new BorrowService();
@@ -18,6 +34,8 @@ public class BorrowServlet extends BaseServlet {
 
     /** GET — load the borrow confirmation page with bike details */
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -41,6 +59,8 @@ public class BorrowServlet extends BaseServlet {
 
     /** POST — confirm and process the borrow */
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

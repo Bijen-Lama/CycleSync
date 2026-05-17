@@ -1,5 +1,14 @@
 package com.cyclesync.service;
 
+
+/*
+ * File name: FineService.java
+ * Description: CycleSync Service Layer Component
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.dao.FineDao;
 import com.cyclesync.model.BorrowRecordModel;
 import com.cyclesync.model.FineModel;
@@ -12,6 +21,13 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * FineService - Fine calculation and lifecycle management.
+ */
+
+/**
+ * Class: FineService
+ * Role: Coordinates business logic and orchestrates database transactions
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class FineService {
 
@@ -30,6 +46,8 @@ public class FineService {
      *
      * @return the new fineId, or -1 if skipped
      */
+
+    // Applies business rules and communicates with the data access layer
     public int issueLateReturnFine(BorrowRecordModel record) throws SQLException {
         if (fineDao.existsForRecord(record.getRecordId()))
             return -1;
@@ -58,6 +76,8 @@ public class FineService {
     /**
      * Admin manually issues a DAMAGE or LOSS fine.
      */
+
+    // Applies business rules and communicates with the data access layer
     public int issueDamageFine(int recordId, int userId,
             String fineReason, BigDecimal fineAmount,
             String adminNotes) throws SQLException {
@@ -72,17 +92,29 @@ public class FineService {
     // Admin — Fine Management
     // ----------------------------------------------------------------
 
+
+    // Applies business rules and communicates with the data access layer
+
     public boolean markFinePaid(int fineId, String adminNotes) throws SQLException {
         return fineDao.updateFineStatus(fineId, "PAID", adminNotes);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean waiveFine(int fineId, String adminNotes) throws SQLException {
         return fineDao.updateFineStatus(fineId, "WAIVED", adminNotes);
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public List<FineModel> getAllFines() throws SQLException {
         return fineDao.findAll();
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public List<FineModel> getPendingFines() throws SQLException {
         return fineDao.findPending();
@@ -92,13 +124,22 @@ public class FineService {
     // Member — Fine Viewing
     // ----------------------------------------------------------------
 
+
+    // Applies business rules and communicates with the data access layer
+
     public List<FineModel> getFinesByUser(int userId) throws SQLException {
         return fineDao.findByUserId(userId);
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public BigDecimal getTotalPendingFinesByUser(int userId) throws SQLException {
         return fineDao.getTotalPendingByUser(userId);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public FineModel getFineById(int fineId) throws SQLException {
         return fineDao.findById(fineId);

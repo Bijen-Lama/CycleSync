@@ -1,5 +1,14 @@
 package com.cyclesync.dao;
 
+
+/*
+ * File name: FineDao.java
+ * Description: CycleSync Data Access Object
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import com.cyclesync.model.FineModel;
 
@@ -10,6 +19,13 @@ import java.util.List;
 
 /**
  * FineDao - DB operations for the 'fines' table.
+ */
+
+/**
+ * Class: FineDao
+ * Role: Manages direct database interactions and coordinates SQL data persistent states
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class FineDao {
 
@@ -49,6 +65,8 @@ public class FineDao {
     // ----------------------------------------------------------------
     // Mapper (enriched)
     // ----------------------------------------------------------------
+
+    // Executes the SQL query to perform CRUD actions on the database
     private FineModel mapRow(ResultSet rs) throws SQLException {
         FineModel fine = new FineModel();
         fine.setFineId(rs.getInt("fineId"));
@@ -71,6 +89,9 @@ public class FineDao {
     // ----------------------------------------------------------------
     // CREATE
     // ----------------------------------------------------------------
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public int insertFine(FineModel fine) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -96,6 +117,9 @@ public class FineDao {
     // READ
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public FineModel findById(int fineId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_BY_ID)) {
@@ -108,6 +132,9 @@ public class FineDao {
         return null;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<FineModel> findAll() throws SQLException {
         List<FineModel> fineList = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -118,6 +145,9 @@ public class FineDao {
         }
         return fineList;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<FineModel> findByUserId(int userId) throws SQLException {
         List<FineModel> fineList = new ArrayList<>();
@@ -132,6 +162,9 @@ public class FineDao {
         return fineList;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<FineModel> findPending() throws SQLException {
         List<FineModel> fineList = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -143,6 +176,9 @@ public class FineDao {
         return fineList;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public boolean existsForRecord(int recordId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_BY_RECORD)) {
@@ -153,6 +189,9 @@ public class FineDao {
             }
         }
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public BigDecimal getTotalPendingByUser(int userId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -169,6 +208,9 @@ public class FineDao {
     // ----------------------------------------------------------------
     // UPDATE
     // ----------------------------------------------------------------
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public boolean updateFineStatus(int fineId, String fineStatus, String adminNotes) throws SQLException {
         try (Connection conn = DBConfig.getConnection();

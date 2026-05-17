@@ -1,5 +1,14 @@
 package com.cyclesync.service;
 
+
+/*
+ * File name: BicycleService.java
+ * Description: CycleSync Service Layer Component
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.dao.BicycleDao;
 import com.cyclesync.model.BicycleModel;
 
@@ -10,6 +19,13 @@ import java.util.List;
 /**
  * BicycleService - Fleet management and availability search logic.
  */
+
+/**
+ * Class: BicycleService
+ * Role: Coordinates business logic and orchestrates database transactions
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class BicycleService {
 
     private final BicycleDao bicycleDao = new BicycleDao();
@@ -17,6 +33,9 @@ public class BicycleService {
     // ----------------------------------------------------------------
     // Admin — Fleet Management
     // ----------------------------------------------------------------
+
+
+    // Applies business rules and communicates with the data access layer
 
     public int addBicycle(String bicycleName, String bicycleType,
                           String locationCode, String hourlyRateStr,
@@ -40,6 +59,9 @@ public class BicycleService {
         );
         return bicycleDao.insertBicycle(bike);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean updateBicycle(int bicycleId, String bicycleName, String bicycleType,
                                  String bicycleStatus, String locationCode,
@@ -65,9 +87,15 @@ public class BicycleService {
         return bicycleDao.updateBicycle(bike);
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public boolean updateStatus(int bicycleId, String bicycleStatus) throws SQLException {
         return bicycleDao.updateStatus(bicycleId, bicycleStatus.toUpperCase());
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public boolean deleteBicycle(int bicycleId) throws SQLException {
         return bicycleDao.deleteBicycle(bicycleId);
@@ -77,9 +105,15 @@ public class BicycleService {
     // Member — Search & Browse
     // ----------------------------------------------------------------
 
+
+    // Applies business rules and communicates with the data access layer
+
     public List<BicycleModel> getAllBicycles() throws SQLException {
         return bicycleDao.findAll();
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public List<BicycleModel> getAvailableBicycles() throws SQLException {
         return bicycleDao.findAvailable();
@@ -88,6 +122,8 @@ public class BicycleService {
     /**
      * Search available bikes. If type is null/empty, returns all available.
      */
+
+    // Applies business rules and communicates with the data access layer
     public List<BicycleModel> searchByType(String bicycleType) throws SQLException {
         if (bicycleType == null || bicycleType.trim().isEmpty() || bicycleType.equalsIgnoreCase("ALL")) {
             return bicycleDao.findAvailable();
@@ -95,9 +131,15 @@ public class BicycleService {
         return bicycleDao.findByType(bicycleType.toUpperCase());
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public BicycleModel getBicycleById(int bicycleId) throws SQLException {
         return bicycleDao.findById(bicycleId);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public int[] getFleetStatusCounts() throws SQLException {
         return bicycleDao.getStatusCounts();

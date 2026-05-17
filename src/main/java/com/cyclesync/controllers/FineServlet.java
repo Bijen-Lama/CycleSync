@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: FineServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.FineService;
 
@@ -10,11 +19,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/fines")
+
+/**
+ * Class: FineServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class FineServlet extends BaseServlet {
 
     private final FineService fineService = new FineService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -42,6 +60,8 @@ public class FineServlet extends BaseServlet {
 
     /** POST — admin resolves a fine (mark paid or waive) */
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

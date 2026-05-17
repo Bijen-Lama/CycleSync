@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: ReturnBikeServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.UserModel;
 import com.cyclesync.model.BorrowRecordModel;
 import com.cyclesync.model.BicycleModel;
@@ -17,6 +26,13 @@ import java.math.RoundingMode;
 import java.sql.Timestamp;
 
 @WebServlet("/returnBike")
+
+/**
+ * Class: ReturnBikeServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class ReturnBikeServlet extends BaseServlet {
 
     private final BorrowService borrowService = new BorrowService();
@@ -24,6 +40,8 @@ public class ReturnBikeServlet extends BaseServlet {
     private final BorrowRecordDao borrowDao = new BorrowRecordDao();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = getLoggedInUser(request, response);
         if (user == null) return;
@@ -66,6 +84,8 @@ public class ReturnBikeServlet extends BaseServlet {
     }
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = getLoggedInUser(request, response);
         if (user == null) return;

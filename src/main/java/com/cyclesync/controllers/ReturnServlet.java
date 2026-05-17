@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: ReturnServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.model.BorrowRecordModel;
 import com.cyclesync.model.UserModel;
 import com.cyclesync.service.BorrowService;
@@ -12,12 +21,21 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/returnBike_legacy")
+
+/**
+ * Class: ReturnServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class ReturnServlet extends BaseServlet {
 
     private final BorrowService borrowService = new BorrowService();
     private final FineService   fineService   = new FineService();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

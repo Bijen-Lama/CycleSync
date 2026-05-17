@@ -1,5 +1,14 @@
 package com.cyclesync.controllers;
 
+
+/*
+ * File name: ContactServlet.java
+ * Description: CycleSync Controller Servlet
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.dao.FeedbackDao;
 import com.cyclesync.model.FeedbackModel;
 import com.cyclesync.model.UserModel;
@@ -11,11 +20,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/contact")
+
+/**
+ * Class: ContactServlet
+ * Role: Handles incoming HTTP requests and coordinates client server response flows
+ *
+ * This handles primary logic and coordinates system processes.
+ */
 public class ContactServlet extends BaseServlet {
     
     private final FeedbackDao feedbackDao = new FeedbackDao();
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = getLoggedInUser(request, response);
         if (user == null) return;
@@ -24,6 +42,8 @@ public class ContactServlet extends BaseServlet {
     }
 
     @Override
+
+    // Special method handling request lifecycle or component initialization
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = getLoggedInUser(request, response);
         if (user == null) return;

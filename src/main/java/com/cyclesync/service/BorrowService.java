@@ -1,5 +1,14 @@
 package com.cyclesync.service;
 
+
+/*
+ * File name: BorrowService.java
+ * Description: CycleSync Service Layer Component
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.dao.BicycleDao;
 import com.cyclesync.dao.BorrowRecordDao;
 import com.cyclesync.model.BicycleModel;
@@ -14,6 +23,13 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * BorrowService - Core borrow/return workflow with fine-trigger logic.
+ */
+
+/**
+ * Class: BorrowService
+ * Role: Coordinates business logic and orchestrates database transactions
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class BorrowService {
 
@@ -33,6 +49,8 @@ public class BorrowService {
      *
      * @return the new recordId
      */
+
+    // Applies business rules and communicates with the data access layer
     public int borrowBicycle(int userId, int bicycleId) throws SQLException {
 
         BicycleModel bike = bicycleDao.findById(bicycleId);
@@ -72,6 +90,8 @@ public class BorrowService {
      *
      * @return the completed BorrowRecordModel (with totalHours/totalCost set)
      */
+
+    // Applies business rules and communicates with the data access layer
     public BorrowRecordModel returnBicycle(int recordId) throws SQLException {
 
         BorrowRecordModel record = borrowRecordDao.findById(recordId);
@@ -110,21 +130,36 @@ public class BorrowService {
     // Queries
     // ----------------------------------------------------------------
 
+
+    // Applies business rules and communicates with the data access layer
+
     public List<BorrowRecordModel> getAllRecords() throws SQLException {
         return borrowRecordDao.findAll();
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public List<BorrowRecordModel> getRecordsByUser(int userId) throws SQLException {
         return borrowRecordDao.findByUserId(userId);
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public BorrowRecordModel getActiveBorrowByUser(int userId) throws SQLException {
         return borrowRecordDao.findActiveBorrowByUser(userId);
     }
 
+
+    // Applies business rules and communicates with the data access layer
+
     public BorrowRecordModel getRecordById(int recordId) throws SQLException {
         return borrowRecordDao.findById(recordId);
     }
+
+
+    // Applies business rules and communicates with the data access layer
 
     public int countActiveLoans() throws SQLException {
         return borrowRecordDao.countActive();
@@ -134,6 +169,8 @@ public class BorrowService {
      * Marks any ACTIVE records whose dueDate has passed as OVERDUE.
      * Call this from AdminDashboardServlet on load, or via a scheduler.
      */
+
+    // Applies business rules and communicates with the data access layer
     public void flagOverdueRecords() throws SQLException {
         Timestamp now = new Timestamp(System.currentTimeMillis());
         borrowRecordDao.flagOverdueRecords(now);

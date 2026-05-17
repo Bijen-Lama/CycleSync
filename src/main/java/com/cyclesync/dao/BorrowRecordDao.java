@@ -1,5 +1,14 @@
 package com.cyclesync.dao;
 
+
+/*
+ * File name: BorrowRecordDao.java
+ * Description: CycleSync Data Access Object
+ *
+ * This file is part of the CycleSync project.
+ * It provides essential architecture for the application.
+ */
+
 import com.cyclesync.config.DBConfig;
 import com.cyclesync.model.BorrowRecordModel;
 
@@ -11,6 +20,13 @@ import java.util.List;
 /**
  * BorrowRecordDao - DB operations for 'borrow_records'.
  * JOIN queries populate the enrichment fields (memberName, bicycleName, etc.)
+ */
+
+/**
+ * Class: BorrowRecordDao
+ * Role: Manages direct database interactions and coordinates SQL data persistent states
+ *
+ * This handles primary logic and coordinates system processes.
  */
 public class BorrowRecordDao {
 
@@ -58,6 +74,8 @@ public class BorrowRecordDao {
     // ----------------------------------------------------------------
     // Mapper (enriched)
     // ----------------------------------------------------------------
+
+    // Executes the SQL query to perform CRUD actions on the database
     private BorrowRecordModel mapRow(ResultSet rs) throws SQLException {
         BorrowRecordModel record = new BorrowRecordModel();
         record.setRecordId(rs.getInt("recordId"));
@@ -86,6 +104,9 @@ public class BorrowRecordDao {
     // CREATE
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public int insertBorrowRecord(BorrowRecordModel record) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
@@ -109,6 +130,9 @@ public class BorrowRecordDao {
     // READ
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public BorrowRecordModel findById(int recordId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_BY_ID)) {
@@ -121,6 +145,9 @@ public class BorrowRecordDao {
         return null;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public List<BorrowRecordModel> findAll() throws SQLException {
         List<BorrowRecordModel> records = new ArrayList<>();
         try (Connection conn = DBConfig.getConnection();
@@ -131,6 +158,9 @@ public class BorrowRecordDao {
         }
         return records;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public List<BorrowRecordModel> findByUserId(int userId) throws SQLException {
         List<BorrowRecordModel> records = new ArrayList<>();
@@ -145,6 +175,9 @@ public class BorrowRecordDao {
         return records;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public BorrowRecordModel findActiveBorrowByUser(int userId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_ACTIVE_BY_USER)) {
@@ -157,6 +190,9 @@ public class BorrowRecordDao {
         return null;
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public BorrowRecordModel findActiveBorrowByBike(int bicycleId) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_FIND_ACTIVE_BY_BIKE)) {
@@ -168,6 +204,9 @@ public class BorrowRecordDao {
         }
         return null;
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public int countActive() throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -183,6 +222,9 @@ public class BorrowRecordDao {
     // UPDATE
     // ----------------------------------------------------------------
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public boolean markReturned(int recordId, Timestamp returnDate,
                                 BigDecimal totalHours, BigDecimal totalCost) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
@@ -196,6 +238,9 @@ public class BorrowRecordDao {
         }
     }
 
+
+    // Executes the SQL query to perform CRUD actions on the database
+
     public boolean updateStatus(int recordId, String recordStatus) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_STATUS)) {
@@ -205,6 +250,9 @@ public class BorrowRecordDao {
             return ps.executeUpdate() > 0;
         }
     }
+
+
+    // Executes the SQL query to perform CRUD actions on the database
 
     public int flagOverdueRecords(Timestamp now) throws SQLException {
         try (Connection conn = DBConfig.getConnection();
